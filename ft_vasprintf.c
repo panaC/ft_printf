@@ -6,13 +6,14 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 13:56:04 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/24 14:57:37 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/24 18:19:36 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <stdio.h>
 #include <libft.h>
+#include "ft_printf.h"
 
 /*
 ** Fonction Recursif printf
@@ -43,8 +44,8 @@ int			ft_vasprintf(char **ret, const char *s, va_list ap)
 	char		*str;
 	char		*str_recurs;
 
-	va_start(ap, s);
-	if (search_next_code(s, &size_end) == 0)
+	printf("%d\n", search_next_format(s));
+	if (((size_end = search_next_format(s))) == 0)
 	{
 		/* EOL */
 		va_end(ap);
@@ -55,19 +56,20 @@ int			ft_vasprintf(char **ret, const char *s, va_list ap)
 	str = ft_strsub(s, 0, size_end);
 	/* sauvegarde de l'arg */
 	va_copy(arg, ap);
-	va_arg(ap, void);
+	va_arg(ap, void*);
 	/* copie va_list */
 	va_copy(bck, ap);
 	/* recursion */
-	ft_vasprintf(&str_recurs, s + size_end + 1, bck);
+	ft_vasprintf(&str_recurs, s + size_end, bck); /* size_end + 1 */
 	/* 3eme etape */
 	/*
 	 * resolution du code suivant MAE
 	 */
 	/* concatenation avec ret precedement alloue */
-	resolve_code(ret, str, arg);
+	resolve_format(ret, str, arg);
 	ft_strcat(*ret, str_recurs);
 	ft_memdel((void**)&str_recurs);
+	ft_memdel((void**)&str);
 	va_end(ap);
-	return (ft_strlen(*ret);
+	return (ft_strlen(*ret));
 }
