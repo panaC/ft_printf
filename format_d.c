@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:45:23 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/26 17:14:42 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/26 20:07:36 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 static long long int	cast_format_d(t_format *t)
 {
 	if (t->length_type == code_hh)
-		return ((long long int)va_arg(t->arg, char));
+		return ((long long int)(char)va_arg(t->arg, int));
 	if (t->length_type == code_h)
-		return ((long long int)va_arg(t->arg, short));
+		return ((long long int)(short)va_arg(t->arg, int));
 	if (t->length_type == code_ll)
 		return ((long long int)va_arg(t->arg, long int));
 	if (t->length_type == code_l)
@@ -54,17 +54,20 @@ static char				*param_attribut_d(t_format *t, long long int value,
 {
 	char	*tmp;
 
-	tmp = s;
-	if (value > 0 && t->attr_plus)
+	if (t->attr_0 || value < 0)
 	{
-		tmp = ft_strnew(ft_strlen(tmp) + 1);
-		tmp[0] = '+';
+		tmp = ft_strnew(ft_strlen(s) + 1);
+		tmp[0] = (value > 0 ? '+' : '-');
 		tmp = ft_strcat(tmp, s);
-		ft_memdel((void**)&tmp);
+		if (t->attr_0 && t->precision < 0)
+		{
+			s = fill_length_param(tmp, '0' ),
+				t->attr_moins, t->length_field);
+		//ft_memdel((void**)&tmp);
 	}
-	s = fill_length_param(tmp, ((t->attr_0 && t->precision < 0) ? '0' : ' '),
-			t->attr_moins, ft_strlen(tmp));
-	ft_memdel((void**)&tmp);
+	else
+		s = fill_length_param(s, ((t->attr_0 && t->precision < 0) ? '0' : ' '),
+			t->attr_moins, t->length_field);
 	return (s);
 }
 
@@ -88,11 +91,18 @@ char					*conv_format_d(t_format *t)
 
 int						test_param_precision()
 {
-	char *s = "123456789";
-	long long int l = 123456789;
+	char *s = "520";
+	long long int l = -520;
+	t_format *t = init_struct();
+	char *ret;
 
-	printf("%s\n", param_precision_d(20, l, s));
-
+	t->precision = -1;
+	t->attr_0 = 1;
+	t->attr_moins = 1;
+	t->length_field = 30;
+	ret = param_precision_d(t->precision, l, s);
+	ret = param_attribut_d(t, l, ret);
+	printf("%sa\n", ret);
 	return 0;
 }
 

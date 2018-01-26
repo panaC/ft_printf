@@ -3,9 +3,14 @@
 int		main(void)
 {
 
+	printf("%03.3dallo\n", -42);
+	printf("%03.3dallo\n", 42);
+	printf("%+09dallo\n", -42);
+	printf("%+9dallo\n", -42);
 	printf("%+01dallo\n", 42);
 	printf("%+09dallo\n", 42);
 	printf("%+09dallo\n", -42);
+	printf("%+0.9dallo\n", -42);
 	printf("%+09dallo\n", 4242);
 	printf("%+09.7dallo\n", 4242);
 	printf("%09dallo\n", 4242);

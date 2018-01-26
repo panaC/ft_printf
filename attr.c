@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:37:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/26 16:45:54 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/26 18:48:13 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char		*fill_length_param(char *s, char car, t_bool is_left, size_t size)
 	return (ret);
 }
 
+/*
 static int main_test_fill_length(void)
 {
 
@@ -57,11 +58,4 @@ static int main_test_fill_length(void)
 	printf("%sa\n", fill_length_param(s, ' ', 0, 7));
 	return 0;
 
-}
-
-int		main(void)
-{
-
-	main_test_fill_length();
-	return 0;
-}
+}*/
