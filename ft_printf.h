@@ -6,13 +6,14 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:19:26 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/25 17:45:00 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/26 17:12:24 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __FT_PRINTF_
 #define __FT_PRINTF_
 
+#include <libft.h>
 #include <stdarg.h>
 
 #define STR_FORMAT_CHAR "sSpdDioOuUxXcC"
@@ -30,11 +31,15 @@ typedef enum				e_length
 
 typedef struct			s_format
 {
-	char				attribut[5];
+	t_bool				attr_dieze;
+	t_bool				attr_0;
+	t_bool				attr_plus;
+	t_bool				attr_moins;
+	t_bool				attr_space;
 	int					length_field;
 	int					precision;
 	t_length			length_type;
-	char				conv_indicator;
+	char				op;
 	va_list				arg;
 }						t_format;
 
@@ -43,5 +48,6 @@ int			ft_vasprintf(char **ret, const char *s, va_list ap);
 int			ft_printf(const char *s, ...);
 int			search_next_format(const char *s);
 void		resolve_format(char **ret, char *str, va_list ap);
+char		*fill_length_param(char *s, char car, t_bool is_left, size_t size);
 
 #endif
