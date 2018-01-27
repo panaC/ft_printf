@@ -1,6 +1,6 @@
 a.out
 .*
 ~*
-test*
+test/try*
 test/.*
 test/~*
