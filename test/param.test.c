@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 11:36:18 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/27 13:53:15 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/27 23:40:33 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int		flp_03()
 {
 	char *s = "Hello";
 	char *r = fill_length_param(s, ' ', 1, 7);
-	RS("  Hello", r);
+	RS("Hello  ", r);
 	return (0);
 }
 
@@ -44,7 +44,7 @@ static int		flp_04()
 {
 	char *s = "Hello";
 	char *r = fill_length_param(s, ' ', 0, 7);
-	RS("Hello  ", r);
+	RS("  Hello", r);
 	return (0);
 }
 
@@ -68,7 +68,7 @@ static int		flp_07()
 {
 	char *s = "Hello";
 	char *r = fill_length_param(s, '0', 1, 7);
-	RS("00Hello", r);
+	RS("Hello00", r);
 	return (0);
 }
 
@@ -76,7 +76,7 @@ static int		flp_08()
 {
 	char *s = "Hello";
 	char *r = fill_length_param(s, '0', 0, 7);
-	RS("Hello00", r);
+	RS("00Hello", r);
 	return (0);
 }
 

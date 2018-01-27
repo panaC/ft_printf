@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:37:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/27 12:53:59 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/27 23:31:48 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ char		*fill_length_param(char *s, char car, t_bool is_left, size_t size)
 	tmp = ft_strnew(sz);
 	tmp = (char*)ft_memset(tmp, car, sz);
 	if (is_left)
-		ret = ft_strjoin(tmp, s);
-	else
 		ret = ft_strjoin(s, tmp);
+	else
+		ret = ft_strjoin(tmp, s);
 	ft_memdel((void**)&tmp);
 	return (ret);
 }

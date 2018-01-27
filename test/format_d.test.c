@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 12:58:07 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/27 18:49:22 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/27 23:34:36 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static int pad_03()
 	t->length_field = 0;
 	s = param_precision_d(t->precision, l, s);
 	r = param_attribut_d(t, l, s);
-	RS(s, r);
+	RS("-0000000520", r);
 	return (0);
 }
 
@@ -320,7 +320,7 @@ static int pad_14()
 	t->length_field = 10;
 	s = param_precision_d(t->precision, l, s);
 	r = param_attribut_d(t, l, s);
-	RS("+520      ", r);
+	RS("520       ", r);
 	return (0);
 }
 

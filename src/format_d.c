@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:45:23 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/27 13:21:51 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/28 00:20:28 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,30 @@ char				*param_precision_d(int precision,
 char				*param_attribut_d(t_format *t, long long int value,
 		char *s)
 {
-	char	*tmp;
+	char		*tmp;
+	size_t		sign;
 
-	if (t->attr_0 || value < 0)
+	if (t->attr_0 && t->attr_moins)
+		t->attr_0 = FALSE;
+	if (t->attr_0 && t->precision > 0)
+		t->attr_0 = FALSE;
+	if (t->attr_plus && t->attr_space)
+		t->attr_space = FALSE;
+	sign = ((t->attr_space + t->attr_plus) || value < 0);
+	tmp = s;
+	if (t->attr_0 && sign)
 	{
-		tmp = ft_strnew(ft_strlen(s) + 1);
-		tmp[0] = (value > 0 ? '+' : '-');
-		tmp = ft_strcat(tmp, s);
-		if (t->attr_0 && t->precision < 0)
-		{
-			s = fill_length_param(tmp, '0',
-				t->attr_moins, t->length_field);
-		}
-		//ft_memdel((void**)&tmp);
+		if (value < 0)
+			s = ft_strjoin("-", fill_length_param(tmp, '0', t->attr_moins, t->length_field - 1));
+		else
+			s = ft_strjoin((t->attr_plus ? "+" : " "), fill_length_param(tmp, '0', t->attr_moins, t->length_field - 1));
+		return (s);
 	}
-	else
-		s = fill_length_param(s, ((t->attr_0 && t->precision < 0) ? '0' : ' '),
-			t->attr_moins, t->length_field);
+	if (value < 0)
+		tmp = ft_strjoin("-", s);
+	else if (t->attr_plus)
+		tmp = ft_strjoin("+", s);
+	s = fill_length_param(tmp, (t->attr_0 ? '0' : ' '), t->attr_moins, t->length_field);
 	return (s);
 }
 
@@ -81,29 +88,10 @@ char					*conv_format_d(t_format *t)
 	if (t->op == 'D')
 		t->length_type = code_l;
 	value = cast_format_d(t);
-	//ret = ft_itoa_long(value);
-	ret = NULL; //debug
+	ret = ft_itoa_long(value);
 	tmp = param_precision_d(t->precision, value, ret);
 	ft_memdel((void**)&ret);
 	ret = param_attribut_d(t, value, tmp);
 	ft_memdel((void**)&tmp);
 	return (ret);
 }
-
-/*
-int						test_param_precision()
-{
-	char *s = "520";
-	long long int l = -520;
-	t_format *t = init_struct();
-	char *ret;
-
-	t->precision = -1;
-	t->attr_0 = 1;
-	t->attr_moins = 1;
-	t->length_field = 30;
-	ret = param_precision_d(t->precision, l, s);
-	ret = param_attribut_d(t, l, ret);
-	printf("%sa\n", ret);
-	return 0;
-}*/
