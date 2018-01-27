@@ -4,3 +4,4 @@ a.out
 test/try*
 test/.*
 test/~*
+test/test
