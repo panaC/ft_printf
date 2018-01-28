@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 13:56:04 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/24 18:19:36 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/28 19:31:23 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ int			ft_vasprintf(char **ret, const char *s, va_list ap)
 	va_list		bck;
 	char		*str;
 	char		*str_recurs;
+	char		*tmp;
+	t_format	*t;
 
-	printf("%d\n", search_next_format(s));
+	t = init_struct();
 	if (((size_end = search_next_format(s))) == 0)
 	{
 		/* EOL */
@@ -66,10 +68,11 @@ int			ft_vasprintf(char **ret, const char *s, va_list ap)
 	 * resolution du code suivant MAE
 	 */
 	/* concatenation avec ret precedement alloue */
-	resolve_format(ret, str, arg);
-	ft_strcat(*ret, str_recurs);
+	resolve_format(tmp, str, arg);
+	*ret = ft_strjoin(tmp, str_recurs);
 	ft_memdel((void**)&str_recurs);
 	ft_memdel((void**)&str);
+	ft_memdel((void**)&tmp);
 	va_end(ap);
 	return (ft_strlen(*ret));
 }

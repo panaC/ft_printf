@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 12:58:07 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/27 23:34:36 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/28 16:14:50 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -604,7 +604,221 @@ static int pad_test()
 	return (0);
 }
 
+static int cfd_01_(int n, ...)
+{
+	char *r;
+	va_list ap;
+	va_start(ap, n);
+	t_format *t = init_struct();
+	va_copy(t->arg, ap);
+	t->length_type = code_none;
+	t->precision = 5;
+	t->attr_0 = 1;
+	t->attr_plus = 1;
+	t->attr_moins = 0;
+	t->attr_dieze = 0;
+	t->attr_space = 0;
+	t->length_field = 10;
+	r = conv_format_d(t);
+	RS("    +00520", r);
+	return (0);
+}
+
+static int cfd_01()
+{
+	cfd_01_(0, 520);
+}
+
+static int cfd_02_(int n, ...)
+{
+	char *r;
+	va_list ap;
+	va_start(ap, n);
+	t_format *t = init_struct();
+	va_copy(t->arg, ap);
+	t->length_type = code_none;
+	t->precision = 5;
+	t->attr_0 = 1;
+	t->attr_plus = 1;
+	t->attr_moins = 0;
+	t->attr_dieze = 0;
+	t->attr_space = 0;
+	t->length_field = 10;
+	r = conv_format_d(t);
+	RS("    -00520", r);
+	return (0);
+}
+
+static int cfd_02()
+{
+	cfd_02_(0, -520);
+}
+
+static int cfd_03_(int n, ...)
+{
+	char *r;
+	va_list ap;
+	va_start(ap, n);
+	t_format *t = init_struct();
+	va_copy(t->arg, ap);
+	t->length_type = code_hh;
+	t->precision = 5;
+	t->attr_0 = 1;
+	t->attr_plus = 1;
+	t->attr_moins = 0;
+	t->attr_dieze = 0;
+	t->attr_space = 0;
+	t->length_field = 10;
+	r = conv_format_d(t);
+	RS("    +00008", r);
+	return (0);
+}
+
+static int cfd_03()
+{
+	cfd_03_(0, 520);
+}
+
+static int cfd_04_(int n, ...)
+{
+	char *r;
+	va_list ap;
+	va_start(ap, n);
+	t_format *t = init_struct();
+	va_copy(t->arg, ap);
+	t->length_type = code_hh;
+	t->precision = 5;
+	t->attr_0 = 1;
+	t->attr_plus = 1;
+	t->attr_moins = 0;
+	t->attr_dieze = 0;
+	t->attr_space = 0;
+	t->length_field = 10;
+	r = conv_format_d(t);
+	RS("    -00008", r);
+	return (0);
+}
+
+static int cfd_04()
+{
+	cfd_04_(0, -520);
+}
+
+static int cfd_05_(int n, ...)
+{
+	char *r;
+	va_list ap;
+	va_start(ap, n);
+	t_format *t = init_struct();
+	va_copy(t->arg, ap);
+	t->length_type = code_h;
+	t->precision = 5;
+	t->attr_0 = 1;
+	t->attr_plus = 1;
+	t->attr_moins = 0;
+	t->attr_dieze = 0;
+	t->attr_space = 0;
+	t->length_field = 10;
+	r = conv_format_d(t);
+	RS("    -04288", r);
+	return (0);
+}
+
+static int cfd_05()
+{
+	cfd_05_(0, 520000);
+}
+
+static int cfd_06_(int n, ...)
+{
+	char *r;
+	va_list ap;
+	va_start(ap, n);
+	t_format *t = init_struct();
+	va_copy(t->arg, ap);
+	t->length_type = code_h;
+	t->precision = 5;
+	t->attr_0 = 1;
+	t->attr_plus = 1;
+	t->attr_moins = 0;
+	t->attr_dieze = 0;
+	t->attr_space = 0;
+	t->length_field = 10;
+	r = conv_format_d(t);
+	RS("    +04288", r);
+	return (0);
+}
+
+static int cfd_06()
+{
+	cfd_06_(0, -520000);
+}
+
+static int cfd_07_(int n, ...)
+{
+	char *r;
+	va_list ap;
+	va_start(ap, n);
+	t_format *t = init_struct();
+	va_copy(t->arg, ap);
+	t->length_type = code_ll;
+	t->precision = 5;
+	t->attr_0 = 1;
+	t->attr_plus = 1;
+	t->attr_moins = 0;
+	t->attr_dieze = 0;
+	t->attr_space = 0;
+	t->length_field = 10;
+	r = conv_format_d(t);
+	RS("+1371543787226005504", r);
+	return (0);
+}
+
+static int cfd_07()
+{
+	cfd_07_(0, -52000000000000000000000);
+}
+
+static int cfd_08_(int n, ...)
+{
+	char *r;
+	va_list ap;
+	va_start(ap, n);
+	t_format *t = init_struct();
+	va_copy(t->arg, ap);
+	t->length_type = code_ll;
+	t->precision = 5;
+	t->attr_0 = 1;
+	t->attr_plus = 1;
+	t->attr_moins = 0;
+	t->attr_dieze = 0;
+	t->attr_space = 0;
+	t->length_field = 10;
+	r = conv_format_d(t);
+	RS("-1371543787226005504", r);
+	return (0);
+}
+
+static int cfd_08()
+{
+	cfd_08_(0, 52000000000000000000000);
+}
+
+static int cfd_test()
+{
+	PT;
+	_verify(cfd_01);
+	_verify(cfd_02);
+	_verify(cfd_03);
+	_verify(cfd_04);
+	_verify(cfd_05);
+	_verify(cfd_06);
+	_verify(cfd_07);
+	_verify(cfd_08);
+	return (0);
+}
+
 int		format_d_test()
 {
-	return (ppd_test() + pad_test());
+	return (ppd_test() + pad_test() + cfd_test());
 }

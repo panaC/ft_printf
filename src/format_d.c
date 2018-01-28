@@ -6,14 +6,13 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:45:23 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/28 00:20:28 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/28 16:17:01 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <libft.h>
 #include <stdint.h>
-#include <stdio.h>
 #include "format_d.h"
 
 long long int	cast_format_d(t_format *t)
