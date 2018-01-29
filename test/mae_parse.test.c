@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/28 17:21:12 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/29 10:04:09 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/29 15:34:01 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,14 @@ static int		ml_04()
 	return (0);
 }
 
+static int		ml_05()
+{
+	t_format *t = init_struct();
+	mae_length(mae_attr("d", t), t);
+	RC(t->length_field, -1);
+	return (0);
+}
+
 static int		ml_test()
 {
 	PT;
@@ -144,6 +152,7 @@ static int		ml_test()
 	_verify(ml_02);
 	_verify(ml_03);
 	_verify(ml_04);
+	_verify(ml_05);
 	return (0);
 }
 

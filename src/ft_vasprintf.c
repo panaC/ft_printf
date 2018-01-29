@@ -6,23 +6,23 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 13:56:04 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/28 19:31:23 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/29 16:03:34 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <stdio.h>
 #include <libft.h>
-#include "ft_printf.h"
+#include "../inc/ft_printf.h"
+#include "../src/resolve_format.h"
 
 /*
 ** Fonction Recursif printf
-** 
+**
 ** vasprintf permet de stocker le resultat dans une chaine de car alloue par la
 ** fonction : fonctionnement indentique printf
 */
-int			ft_vasprintf(char **ret, const char *s, va_list ap)
-{
+
 	/*
 	 * Recursivite de la fonction
 	 *
@@ -35,13 +35,13 @@ int			ft_vasprintf(char **ret, const char *s, va_list ap)
 	 *	2eme etape / Si il reste des caractere dans la chaine :
 	 *		Recursivite
 	 *	3eme etape/ Si plus de caractere
-	 *		return 
+	 *		return
 	 */
 
+int			ft_vasprintf(char **ret, const char *s, va_list ap)
+{
 	size_t		size_end;
-	va_list		arg;
 	va_list		bck;
-	char		*str;
 	char		*str_recurs;
 	char		*tmp;
 	t_format	*t;
@@ -49,30 +49,19 @@ int			ft_vasprintf(char **ret, const char *s, va_list ap)
 	t = init_struct();
 	if (((size_end = search_next_format(s))) == 0)
 	{
-		/* EOL */
-		va_end(ap);
 		*ret = ft_strdup("");
 		return (0);
 	}
-	/* copie de la chaine de ptr_start a ptr_end*/
-	str = ft_strsub(s, 0, size_end);
-	/* sauvegarde de l'arg */
-	va_copy(arg, ap);
+	*ret = ft_strsub(s, 0, size_end);
+	va_copy(t->arg, ap);
 	va_arg(ap, void*);
-	/* copie va_list */
 	va_copy(bck, ap);
-	/* recursion */
-	ft_vasprintf(&str_recurs, s + size_end, bck); /* size_end + 1 */
-	/* 3eme etape */
-	/*
-	 * resolution du code suivant MAE
-	 */
-	/* concatenation avec ret precedement alloue */
-	resolve_format(tmp, str, arg);
+	ft_vasprintf(&str_recurs, s + size_end, bck);
+	resolve_format(&tmp, *ret, t);
+	ft_memdel((void**)ret);
 	*ret = ft_strjoin(tmp, str_recurs);
 	ft_memdel((void**)&str_recurs);
-	ft_memdel((void**)&str);
 	ft_memdel((void**)&tmp);
-	va_end(ap);
+	ft_memdel((void**)&t);
 	return (ft_strlen(*ret));
 }

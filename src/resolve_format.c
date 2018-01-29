@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:56:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/29 13:53:04 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/29 16:01:06 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "../src/format_d.h"
 #include "../src/mae_parse.h"
 
-char*		mae_format(char *s, t_format *t)
+char		*mae_format(char *s, t_format *t)
 {
 	if (s || *s)
 	{

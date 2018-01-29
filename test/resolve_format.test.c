@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 10:05:24 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/29 13:51:45 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/29 15:30:26 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static int mf_01_(int n, ...)
 	va_list ap;
 	va_start(ap, n);
 	va_copy(t->arg, ap);
-	va_start(t->arg, n);
+	//va_start(t->arg, n);
+	va_end(ap);
 	return (mf_01__(t));
 }
 
@@ -55,7 +56,8 @@ static int mf_02_(int n, ...)
 	va_list ap;
 	va_start(ap, n);
 	va_copy(t->arg, ap);
-	va_start(t->arg, n);
+	//va_start(t->arg, n);
+	va_end(ap);
 	return (mf_02__(t));
 }
 
@@ -81,7 +83,8 @@ static int mf_03_(int n, ...)
 	va_list ap;
 	va_start(ap, n);
 	va_copy(t->arg, ap);
-	va_start(t->arg, n);
+	//va_start(t->arg, n);
+	va_end(ap);
 	return (mf_03__(t));
 }
 
@@ -90,12 +93,40 @@ static int mf_03()
 	return (mf_03_(0, 4200000000));
 }
 
+static int mf_04__(t_format *t)
+{
+	char *s;
+	s = mae_parse("d", t);
+	char *d;
+	d = mae_format(s, t);
+	char *e = "42";
+	RS(e, d);
+	return (0);
+}
+
+static int mf_04_(int n, ...)
+{
+	t_format *t = init_struct();
+	va_list ap;
+	va_start(ap, n);
+	va_copy(t->arg, ap);
+	//va_start(t->arg, n);
+	va_end(ap);
+	return (mf_04__(t));
+}
+
+static int mf_04()
+{
+	return (mf_04_(0, 42));
+}
+
 static int mf_test()
 {
 	PT;
 	_verify(mf_01);
 	_verify(mf_02);
 	_verify(mf_03);
+	_verify(mf_04);
 	return (0);
 }
 
@@ -115,7 +146,8 @@ static int mr_01_(int n, ...)
 	va_list ap;
 	va_start(ap, n);
 	va_copy(t->arg, ap);
-	va_start(t->arg, n);
+	//va_start(t->arg, n);
+	va_end(ap);
 	return (mr_01__(t));
 }
 
@@ -140,7 +172,8 @@ static int mr_02_(int n, ...)
 	va_list ap;
 	va_start(ap, n);
 	va_copy(t->arg, ap);
-	va_start(t->arg, n);
+	//va_start(t->arg, n);
+	va_end(ap);
 	return (mr_02__(t));
 }
 
@@ -165,7 +198,8 @@ static int mr_03_(int n, ...)
 	va_list ap;
 	va_start(ap, n);
 	va_copy(t->arg, ap);
-	va_start(t->arg, n);
+	//va_start(t->arg, n);
+	va_end(ap);
 	return (mr_03__(t));
 }
 

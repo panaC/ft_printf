@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 12:07:22 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/29 10:31:18 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/29 15:02:17 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@
 #include "../src/resolve_format.h"
 #include "tddc.h"
 
+extern int gi;
+
 int all_tests();
 int param_test();
 int mae_parse_test();
 int format_d_test();
 int resolve_format_test();
+int ft_vasprintf_test();
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:24:59 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/24 18:53:58 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/29 14:46:32 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <stdio.h>
-#include "ft_printf.h"
+#include "../inc/ft_printf.h"
 
 int			search_next_format(const char *s)
 {

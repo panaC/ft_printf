@@ -6,14 +6,13 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 13:18:56 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/27 13:22:36 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/29 15:54:33 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __FORMAT_D_H_
-# define __FORMAT_D_H_
-
-#include "../inc/ft_printf.h"
+#ifndef _FORMAT_D_H
+# define _FORMAT_D_H
+# include "../inc/ft_printf.h"
 
 long long int	cast_format_d(t_format *t);
 char			*param_precision_d(int precision, long long int value, char *s);

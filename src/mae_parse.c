@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/28 17:02:51 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/29 11:39:34 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/29 15:57:51 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include <stdio.h>
 #include "../inc/ft_printf.h"
 
-char*		mae_attr(char *s, t_format *t)
+char		*mae_attr(char *s, t_format *t)
 {
 	while (42)
 	{
 		if (!s || *s == '\0')
 			return (s);
-		if(*s == '#')
+		if (*s == '#')
 			t->attr_dieze = TRUE;
 		else if (*s == '0')
 			t->attr_0 = TRUE;
@@ -30,21 +30,21 @@ char*		mae_attr(char *s, t_format *t)
 			t->attr_moins = TRUE;
 		else if (*s == '+')
 			t->attr_plus = TRUE;
-		else 
+		else
 			return (s);
 		s++;
 	}
 	return (s);
 }
 
-char*		mae_length(char *s, t_format *t)
+char		*mae_length(char *s, t_format *t)
 {
 	if (s && *s && ft_isnum(*s))
 		t->length_field = ft_atoi(s);
-	return (s + ft_len(t->length_field));
+	return (s + ((t->length_field > -1) ? ft_len(t->length_field) : 0));
 }
 
-char*		mae_precision(char *s, t_format *t)
+char		*mae_precision(char *s, t_format *t)
 {
 	if (s && *s && *s == '.')
 	{
@@ -61,7 +61,7 @@ char*		mae_precision(char *s, t_format *t)
 	return (s);
 }
 
-char*		mae_cast(char *s, t_format *t)
+char		*mae_cast(char *s, t_format *t)
 {
 	char p;
 
@@ -90,7 +90,7 @@ char*		mae_cast(char *s, t_format *t)
 	return (s);
 }
 
-char*		mae_parse(char *s, t_format *t)
+char		*mae_parse(char *s, t_format *t)
 {
 	return (mae_cast(mae_precision(mae_length(mae_attr(s, t), t), t), t));
 }
