@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/28 17:21:12 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/28 17:32:52 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/29 10:04:09 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,142 @@ static int		ma_test()
 	return (0);
 }
 
+static int		ml_01()
+{
+	t_format *t = init_struct();
+	mae_length(mae_attr("#0 +- +10d", t), t);
+	RC(t->length_field, 10);
+	return (0);
+}
+
+static int		ml_02()
+{
+	t_format *t = init_struct();
+	mae_length(mae_attr("#0 +- +200d", t), t);
+	RC(t->length_field, 200);
+	return (0);
+}
+
+static int		ml_03()
+{
+	t_format *t = init_struct();
+	mae_length(mae_attr("#0 +- -200d", t), t);
+	RC(t->length_field, 200);
+	return (0);
+}
+
+static int		ml_04()
+{
+	t_format *t = init_struct();
+	mae_length(mae_attr("#0 +- +      200d", t), t);
+	RC(t->length_field, 200);
+	return (0);
+}
+
+static int		ml_test()
+{
+	PT;
+	_verify(ml_01);
+	_verify(ml_02);
+	_verify(ml_03);
+	_verify(ml_04);
+	return (0);
+}
+
+static int		mp_01()
+{
+	t_format *t = init_struct();
+	mae_precision(mae_length(mae_attr("#0 +- +10.10d", t), t), t);
+	RC(10, t->precision);
+	return (0);
+}
+
+static int		mp_02()
+{
+	t_format *t = init_struct();
+	mae_precision(mae_length(mae_attr("#0 +- +300.200d", t), t), t);
+	RC(200, t->precision);
+	return (0);
+}
+
+static int		mp_03()
+{
+	t_format *t = init_struct();
+	mae_precision(mae_length(mae_attr("#0 +- -200.0d", t), t), t);
+	RC(0, t->precision);
+	return (0);
+}
+
+static int		mp_04()
+{
+	t_format *t = init_struct();
+	mae_precision(mae_length(mae_attr("#0 +- +      200.-10d", t), t), t);
+	RC(-1, t->precision);
+	return (0);
+}
+
+static int		mp_test()
+{
+	PT;
+	_verify(mp_01);
+	_verify(mp_02);
+	_verify(mp_03);
+	_verify(mp_04);
+	return (0);
+}
+
+static int		mc_01()
+{
+	t_format *t = init_struct();
+	mae_cast(mae_precision(mae_length(mae_attr("#0 +- +      200.-10d", t), t), t), t);
+	RC(code_none, t->length_type);
+	return (0);
+}
+
+static int		mc_02()
+{
+	t_format *t = init_struct();
+	mae_cast(mae_precision(mae_length(mae_attr("#0 +- +      200.-10lld", t), t), t), t);
+	RC(code_ll, t->length_type);
+	return (0);
+}
+
+static int		mc_03()
+{
+	t_format *t = init_struct();
+	mae_cast(mae_precision(mae_length(mae_attr("#0 +- +      200.-10llllmd", t), t), t), t);
+	RC(code_ll, t->length_type);
+	return (0);
+}
+
+static int		mc_04()
+{
+	t_format *t = init_struct();
+	mae_cast(mae_precision(mae_length(mae_attr("#0 +- +      200.-10hhd", t), t), t), t);
+	RC(code_hh, t->length_type);
+	return (0);
+}
+
+static int		mc_05()
+{
+	t_format *t = init_struct();
+	mae_cast(mae_precision(mae_length(mae_attr("#0 +- +      200.-10hd", t), t), t), t);
+	RC(code_h, t->length_type);
+	return (0);
+}
+
+static int		mc_test()
+{
+	PT;
+	_verify(mc_01);
+	_verify(mc_02);
+	_verify(mc_03);
+	_verify(mc_04);
+	_verify(mc_05);
+	return (0);
+}
+
 int		mae_parse_test()
 {
-	return (ma_test());
+	return (ma_test() + ml_test() + mp_test() + mc_test());
 }

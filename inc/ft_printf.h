@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:19:26 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/27 13:23:12 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/29 10:37:14 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct			s_format
 int			ft_vasprintf(char **ret, const char *s, va_list ap);
 int			ft_printf(const char *s, ...);
 int			search_next_format(const char *s);
-void		resolve_format(char **ret, char *str, va_list ap);
 char		*fill_length_param(char *s, char car, t_bool is_left, size_t size);
 t_format		*init_struct(void);
 

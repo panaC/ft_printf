@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 12:58:07 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/28 16:14:50 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/29 09:39:10 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -627,6 +627,7 @@ static int cfd_01_(int n, ...)
 static int cfd_01()
 {
 	cfd_01_(0, 520);
+	return (0);
 }
 
 static int cfd_02_(int n, ...)
@@ -652,6 +653,7 @@ static int cfd_02_(int n, ...)
 static int cfd_02()
 {
 	cfd_02_(0, -520);
+	return (0);
 }
 
 static int cfd_03_(int n, ...)
@@ -677,6 +679,7 @@ static int cfd_03_(int n, ...)
 static int cfd_03()
 {
 	cfd_03_(0, 520);
+	return (0);
 }
 
 static int cfd_04_(int n, ...)
@@ -702,6 +705,7 @@ static int cfd_04_(int n, ...)
 static int cfd_04()
 {
 	cfd_04_(0, -520);
+	return (0);
 }
 
 static int cfd_05_(int n, ...)
@@ -727,6 +731,7 @@ static int cfd_05_(int n, ...)
 static int cfd_05()
 {
 	cfd_05_(0, 520000);
+	return (0);
 }
 
 static int cfd_06_(int n, ...)
@@ -752,6 +757,7 @@ static int cfd_06_(int n, ...)
 static int cfd_06()
 {
 	cfd_06_(0, -520000);
+	return (0);
 }
 
 static int cfd_07_(int n, ...)
@@ -774,10 +780,12 @@ static int cfd_07_(int n, ...)
 	return (0);
 }
 
+/*
 static int cfd_07()
 {
 	cfd_07_(0, -52000000000000000000000);
-}
+	return (0);
+}*/
 
 static int cfd_08_(int n, ...)
 {
@@ -799,10 +807,12 @@ static int cfd_08_(int n, ...)
 	return (0);
 }
 
+/*
 static int cfd_08()
 {
 	cfd_08_(0, 52000000000000000000000);
-}
+	return (0);
+}*/
 
 static int cfd_test()
 {
@@ -813,8 +823,8 @@ static int cfd_test()
 	_verify(cfd_04);
 	_verify(cfd_05);
 	_verify(cfd_06);
-	_verify(cfd_07);
-	_verify(cfd_08);
+	//_verify(cfd_07);
+	//_verify(cfd_08);
 	return (0);
 }
 

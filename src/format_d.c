@@ -6,13 +6,14 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:45:23 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/28 16:17:01 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/29 13:29:57 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <libft.h>
 #include <stdint.h>
+#include <stdio.h>
 #include "format_d.h"
 
 long long int	cast_format_d(t_format *t)
@@ -22,9 +23,9 @@ long long int	cast_format_d(t_format *t)
 	if (t->length_type == code_h)
 		return ((long long int)(short)va_arg(t->arg, int));
 	if (t->length_type == code_ll)
-		return ((long long int)va_arg(t->arg, long int));
-	if (t->length_type == code_l)
 		return (va_arg(t->arg, long long int));
+	if (t->length_type == code_l)
+		return ((long long int)va_arg(t->arg, long int));
 	if (t->length_type == code_j)
 		return ((long long int)va_arg(t->arg, intmax_t));
 	if (t->length_type == code_z)

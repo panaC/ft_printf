@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:56:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/28 18:50:51 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/29 13:53:04 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include "../inc/ft_printf.h"
+#include "../src/format_d.h"
+#include "../src/mae_parse.h"
 
 char*		mae_format(char *s, t_format *t)
 {
@@ -37,7 +39,7 @@ char*		mae_format(char *s, t_format *t)
 void		resolve_format(char **ret, char *str, t_format *t)
 {
 	char	*s;
-	char	*tmp
+	char	*tmp;
 
 	s = str;
 	*ret = NULL;
@@ -55,5 +57,5 @@ void		resolve_format(char **ret, char *str, t_format *t)
 		}
 	}
 	else if (str && *str == '\0')
-		*ret = ft_strdup(str);
+		*ret = ft_strdup(s);
 }

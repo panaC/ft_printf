@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 11:31:59 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/27 13:28:49 by pierre           ###   ########.fr       */
+/*   Updated: 2018/01/29 10:30:25 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int		all_tests()
 	int res = 0;
 	res += param_test();
 	res += format_d_test();
+	res += mae_parse_test();
+	res += resolve_format_test();
 	return (res);
 }
 
