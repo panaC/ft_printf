@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_tools.h                                     :+:      :+:    :+:   */
+/*   format_uox.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/30 08:59:30 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/30 11:13:24 by pleroux          ###   ########.fr       */
+/*   Created: 2018/01/30 11:06:54 by pleroux           #+#    #+#             */
+/*   Updated: 2018/01/30 13:21:04 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _FORMAT_TOOLS_H
-# define _FORMAT_TOOLS_H
+#ifndef FORMAT_UOX_H
+# define FORMAT_UOX_H
 # include "../inc/ft_printf.h"
-# define CONV_OUX (t->op == 'x' || t->op == 'X' || t->op == 'o' || t->op == 'u')
+# define BASE_BX "0123456789ABCDEF"
+# define BASE_SX "0123456789abcdef"
+# define BASE_O  "01234567"
+# define BASE_D  "0123456789"
 
-void			param_attr(t_format *t);
-char			*param_precision(int precision, char *s);
+char					*param_precision_uox(int precision,
+		unsigned long long int value, char *s);
+char					*param_attribut_uox(t_format *t, char *s);
+unsigned long long int	cast_format_uox(t_format *t);
+char					*conv_format_uox(t_format *t);
 
 #endif

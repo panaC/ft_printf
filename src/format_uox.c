@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 09:09:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/30 09:52:11 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/30 13:30:53 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,48 +34,46 @@ unsigned long long int	cast_format_uox(t_format *t)
 	return ((unsigned long long int)va_arg(t->arg, unsigned int));
 }
 
-char				*param_precision_uox(int precision,
+char					*param_precision_uox(int precision,
 		unsigned long long int value, char *s)
 {
 	char	*str_zero;
 
 	if (value == 0 && precision == 0)
 		return (ft_strdup(""));
-	str_zero = ft_strnew((size_t)precision);
-	str_zero = (char *)ft_memset(str_zero, '0',
-			(size_t)(precision - ft_strlen(s)));
-	str_zero = ft_strcat(str_zero, s);
-	return (str_zero);
+	return (param_precision(precision, s));
 }
 
 char					*param_attribut_uox(t_format *t, char *s)
 {
 	char				*tmp;
 
-	param_attr();
+	param_attr(t);
 	tmp = s;
-	if (t->attr_0 && t->attr_dieze)
-	{
-		s = ft_strjoin(((t->op == 'x') ? "0x" : "0X"), fill_length_param(tmp,
-						'0', t->attr_moins, t->length_field - 2);
-		return (s);
-	}
 	if (t->attr_dieze)
+	{
 		tmp = ft_strjoin(((t->op == 'x') ? "0x" : "0X"), s);
+	}
 	s = fill_length_param(tmp,
 			(t->attr_0 ? '0' : ' '), t->attr_moins, t->length_field);
 	return (s);
 }
 
-char					conv_format_uox(t_format *t)
+char					*conv_format_uox(t_format *t)
 {
 	char					*ret;
 	char					*tmp;
 	unsigned long long int	value;
 
-	value = cast_format_d(t);
-	ret = ft_itoa_base_long(value);
-	tmp = param_precision(t->precision, value, ret);
+	value = cast_format_uox(t);
+	/* ici rajouter test Grande lettre length type */
+	if (t->op == 'x' || t->op == 'X')
+		ret = ft_itoa_base_long(value, ((t->op == 'x') ? BASE_SX : BASE_BX));
+	else if (t->op == 'o')
+		ret = ft_itoa_base_long(value, BASE_O);
+	else
+		ret = ft_itoa_base_long(value, BASE_D);
+	tmp = param_precision_uox(t->precision, value, ret);
 	ft_memdel((void**)&ret);
 	ret = param_attribut_uox(t, tmp);
 	ft_memdel((void**)&tmp);

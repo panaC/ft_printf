@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:45:23 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/30 09:51:09 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/30 13:03:48 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,7 @@ char				*param_precision_d(int precision,
 		return (ft_strdup(""));
 	if (precision <= (int)ft_strlen(s))
 		return (ft_strdup(s));
-	str_zero = ft_strnew((size_t)precision);
-	str_zero = (char *)ft_memset(str_zero, '0',
-			(size_t)(precision - ft_strlen(s)));
-	str_zero = ft_strcat(str_zero, s);
-	return (str_zero);
+	return (param_precision(precision, s));
 }
 
 char				*param_attribut_d(t_format *t, long long int value,
@@ -56,7 +52,7 @@ char				*param_attribut_d(t_format *t, long long int value,
 	char		*tmp;
 	size_t		sign;
 
-	param_attr();
+	param_attr(t);
 	sign = ((t->attr_space + t->attr_plus) || value < 0);
 	tmp = s;
 	if (t->attr_0 && sign)
