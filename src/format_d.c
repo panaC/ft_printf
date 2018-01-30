@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:45:23 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/29 15:53:33 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/30 09:51:09 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "format_d.h"
+#include "format_tools.h"
 
 long long int		cast_format_d(t_format *t)
 {
@@ -49,23 +50,13 @@ char				*param_precision_d(int precision,
 	return (str_zero);
 }
 
-static void			static_param_attr(t_format *t)
-{
-	if (t->attr_0 && t->attr_moins)
-		t->attr_0 = FALSE;
-	if (t->attr_0 && t->precision > 0)
-		t->attr_0 = FALSE;
-	if (t->attr_plus && t->attr_space)
-		t->attr_space = FALSE;
-}
-
 char				*param_attribut_d(t_format *t, long long int value,
 		char *s)
 {
 	char		*tmp;
 	size_t		sign;
 
-	static_param_attr();
+	param_attr();
 	sign = ((t->attr_space + t->attr_plus) || value < 0);
 	tmp = s;
 	if (t->attr_0 && sign)
