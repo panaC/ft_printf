@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 09:09:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/30 13:30:53 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/30 14:57:15 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,11 @@ char					*conv_format_uox(t_format *t)
 	unsigned long long int	value;
 
 	value = cast_format_uox(t);
-	/* ici rajouter test Grande lettre length type */
+	if (t->op == 'O' || t->op == 'U')
+		t->length_type = code_l;
 	if (t->op == 'x' || t->op == 'X')
 		ret = ft_itoa_base_long(value, ((t->op == 'x') ? BASE_SX : BASE_BX));
-	else if (t->op == 'o')
+	else if (t->op == 'o' || t->op == 'O')
 		ret = ft_itoa_base_long(value, BASE_O);
 	else
 		ret = ft_itoa_base_long(value, BASE_D);

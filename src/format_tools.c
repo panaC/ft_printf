@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 09:00:30 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/30 13:24:32 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/30 16:47:48 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,34 @@ char			*param_precision(int precision, char *s)
 		return (str_zero);
 	}
 	return (ft_strdup(s));
+}
+
+char			*unicode(wint_t c)
+{
+	int			i;
+	char		*ret;
+
+	i = 0;
+	ret = ft_strnew(4);
+	if (c <= 0x7F)
+		ret[i++] = c;
+	else if (c <= 0x7FF)
+	{
+		ret[i++] = (c >> 6) + 0xC0;
+		ret[i++] = (c & 0x3F) + 0x80;
+	}
+	else if (c <= 0xFFFF)
+	{
+		ret[i++] = (c >> 12) + 0xE0;
+		ret[i++] = ((c >> 6) & 0x3F) + 0x80;
+		ret[i++] = (c & 0x3F) + 0x80;
+	}
+	else if (c <= 0x10FFFF)
+	{
+		ret[i++] = (c >> 18) + 0xF0;
+		ret[i++] = ((c >> 12) & 0x3F) + 0x80;
+		ret[i++] = ((c >> 6) & 0x3F) + 0x80;
+		ret[i++] = (c & 0x3F) + 0x80;
+	}
+	return (ret);
 }

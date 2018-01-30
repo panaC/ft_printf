@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 14:35:10 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/30 13:27:33 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/30 17:01:45 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,88 @@ static int		vpf_06()
 	return (vpf_06_("test x %#0+- 10.5o, finish", 42));
 }
 
+static int		vpf_07_(int *p, char *e, ...)
+{
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	ft_vasprintf(&s, e, ap);
+	sprintf(vp, "test x %p, finish", p);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_07()
+{
+	int		p;
+	return (vpf_07_(&p, "test x %p, finish", &p));
+}
+
+static int		vpf_08_(char *e, ...)
+{
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	ft_vasprintf(&s, e, ap);
+	sprintf(vp, "test x %c, finish", 'h');
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_08()
+{
+	int		p;
+	return (vpf_08_("test x %c, finish", 'h'));
+}
+
+#include <wchar.h>
+#include <unistd.h>
+#include <locale.h>
+
+static int		vpf_09_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	ft_vasprintf(&s, e, ap);
+	sprintf(vp, "test x %C, finish", (wint_t)536);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_09()
+{
+	int		p;
+	return (vpf_09_("test x %C, finish", (wint_t)536));
+}
+
+static int		vpf_09_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	ft_vasprintf(&s, e, ap);
+	sprintf(vp, "test x %C, finish", (wint_t)536);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_09()
+{
+	int		p;
+	return (vpf_09_("test x %C, finish", (wint_t)536));
+}
+
 int ft_vasprintf_test()
 {
 	PT;
@@ -117,5 +199,8 @@ int ft_vasprintf_test()
 	_verify(vpf_04);
 	_verify(vpf_05);
 	_verify(vpf_06);
+	_verify(vpf_07);
+	_verify(vpf_08);
+	_verify(vpf_09);
 	return (0);
 }

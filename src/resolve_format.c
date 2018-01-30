@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:56:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/30 13:30:18 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/30 16:41:48 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,27 @@
 #include "../src/format_d.h"
 #include "../src/mae_parse.h"
 #include "../src/format_uox.h"
+#include "../src/resolve_format.h"
+#include "../src/format_c.h"
+
+char		*conv_format_p(t_format *t)
+{
+	t_format	*tmp;
+	char		*ret;
+	char		*str;
+
+	str = ft_strdup("%#lx");
+	tmp = init_struct();
+	va_copy(tmp->arg, t->arg);
+	resolve_format(&ret, str, t);
+	ft_memdel((void**)&str);
+	return (ret);
+}
 
 char		*mae_format(char *s, t_format *t)
 {
+	char		*ret;
+	t_format	tmp;
 	if (s || *s)
 	{
 		t->op = *s;
@@ -28,11 +46,12 @@ char		*mae_format(char *s, t_format *t)
 		else if (*s == 's' || *s == 'S')
 			printf("Not supported\n");
 		else if (*s == 'p')
-			printf("Not supported\n");
-		else if (*s == 'o' || *s == 'O' || *s == 'u' || *s == 'U' || *s == 'x' || *s == 'X')
+			return (conv_format_p(t));
+		else if (*s == 'o' || *s == 'O' || *s == 'u' || *s == 'U' ||
+				*s == 'x' || *s == 'X')
 			return(conv_format_uox(t));
 		else if (*s == 'c' || *s == 'C')
-			printf("Not supported\n");
+			return (conv_format_c(t));
 	}
 	return (NULL);
 }

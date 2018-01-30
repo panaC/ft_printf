@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_tools.h                                     :+:      :+:    :+:   */
+/*   format_c.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/30 08:59:30 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/30 16:48:01 by pleroux          ###   ########.fr       */
+/*   Created: 2018/01/30 16:35:24 by pleroux           #+#    #+#             */
+/*   Updated: 2018/01/30 16:44:17 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _FORMAT_TOOLS_H
-# define _FORMAT_TOOLS_H
+#ifndef FORMAT_C_H
+# define FORMAT_C_H
 # include <wchar.h>
 # include "../inc/ft_printf.h"
-# define CONV_OUX (t->op == 'x' || t->op == 'X' || t->op == 'o' || t->op == 'u')
 
-void			param_attr(t_format *t);
-char			*param_precision(int precision, char *s);
-char			*unicode(wint_t c);
+wint_t				cast_format_c(t_format *t);;;;
+char				*param_attribut_c(t_format *t, char *s);
+char				*conv_format_c(t_format *t);
 
 #endif
