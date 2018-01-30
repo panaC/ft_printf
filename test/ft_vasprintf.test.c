@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 14:35:10 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/30 17:01:45 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/30 19:24:16 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ static int		vpf_09()
 	return (vpf_09_("test x %C, finish", (wint_t)536));
 }
 
-static int		vpf_09_(char *e, ...)
+static int		vpf_10_(char *e, ...)
 {
 	setlocale(LC_ALL, "");
 	va_list ap;
@@ -178,17 +178,78 @@ static int		vpf_09_(char *e, ...)
 	char *s;
 	char *vp = ft_strnew(100);
 	ft_vasprintf(&s, e, ap);
-	sprintf(vp, "test x %C, finish", (wint_t)536);
+	sprintf(vp, "test x %-10C, finish", (wint_t)536);
 	RS(vp, s);
 	va_end(ap);
 	return (0);
 }
 
-static int		vpf_09()
+static int		vpf_10()
 {
 	int		p;
-	return (vpf_09_("test x %C, finish", (wint_t)536));
+	return (vpf_10_("test x %-10C, finish", (wint_t)536));
 }
+
+static int		vpf_11_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	ft_vasprintf(&s, e, ap);
+	sprintf(vp, "test x %s, finish", NULL);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_11()
+{
+	int		p;
+	return (vpf_11_("test x %s, finish", NULL));
+}
+
+static int		vpf_12_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	ft_vasprintf(&s, e, ap);
+	sprintf(vp, "test x %10.3s, finish", "Hello");
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_12()
+{
+	int		p;
+	return (vpf_12_("test x %10.3s, finish", "Hello"));
+}
+
+static int		vpf_13_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	ft_vasprintf(&s, e, ap);
+	sprintf(vp, "test x %s, finish", "Hello");
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_13()
+{
+	int		p;
+	return (vpf_13_("test x %s, finish", "Hello"));
+}
+
 
 int ft_vasprintf_test()
 {
@@ -202,5 +263,9 @@ int ft_vasprintf_test()
 	_verify(vpf_07);
 	_verify(vpf_08);
 	_verify(vpf_09);
+	_verify(vpf_10);
+	_verify(vpf_11);
+	_verify(vpf_12);
+	_verify(vpf_13);
 	return (0);
 }
