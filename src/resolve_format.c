@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:56:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/30 19:20:41 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/31 10:12:31 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "../src/format_uox.h"
 #include "../src/resolve_format.h"
 #include "../src/format_c.h"
+#include "../src/format_s.h"
 
 char		*conv_format_p(t_format *t)
 {
@@ -44,7 +45,7 @@ char		*mae_format(char *s, t_format *t)
 		if (*s == 'd' || *s == 'D' || *s == 'i')
 			return (conv_format_d(t));
 		else if (*s == 's' || *s == 'S')
-			printf("Not supported\n");
+			return (conv_format_s(t));
 		else if (*s == 'p')
 			return (conv_format_p(t));
 		else if (*s == 'o' || *s == 'O' || *s == 'u' || *s == 'U' ||

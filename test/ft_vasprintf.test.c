@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 14:35:10 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/30 19:24:16 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/31 11:39:21 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,7 +250,67 @@ static int		vpf_13()
 	return (vpf_13_("test x %s, finish", "Hello"));
 }
 
+static int		vpf_14_(char *e, ...)
+{
+	wint_t		t[5] = {536,537,538,539,0};
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	ft_vasprintf(&s, e, ap);
+	sprintf(vp, "test x %S, finish", t);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
 
+static int		vpf_14()
+{
+	int		p;
+	wint_t		t[5] = {536,537,538,539,0};
+	return (vpf_14_("test x %S, finish", t));
+}
+
+static int		vpf_15_(char *e, ...)
+{
+	wint_t		t[5] = {536,537,538,539,0};
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	ft_vasprintf(&s, e, ap);
+	sprintf(vp, "test x %15.2S, finish", t);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_15()
+{
+	int		p;
+	wint_t		t[5] = {536,537,538,539,0};
+	return (vpf_15_("test x %15.2S, finish", t));
+}
+
+static int		vpf_16_(char *e, ...)
+{
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	ft_vasprintf(&s, e, ap);
+	sprintf(vp, "test x %p, finish", NULL);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_16()
+{
+	return (vpf_16_("test x %p, finish", NULL));
+}
 int ft_vasprintf_test()
 {
 	PT;
@@ -267,5 +327,8 @@ int ft_vasprintf_test()
 	_verify(vpf_11);
 	_verify(vpf_12);
 	_verify(vpf_13);
+	_verify(vpf_14);
+	_verify(vpf_15);
+	_verify(vpf_16);
 	return (0);
 }
