@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:45:23 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/30 13:03:48 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/31 17:27:21 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ char				*param_attribut_d(t_format *t, long long int value,
 	}
 	if (value < 0)
 		tmp = ft_strjoin("-", s);
-	else if (t->attr_plus)
-		tmp = ft_strjoin("+", s);
+	else if (t->attr_plus || t->attr_space)
+		tmp = ft_strjoin(((t->attr_plus) ? "+" : " "), s);
 	s = fill_length_param(tmp,
 			(t->attr_0 ? '0' : ' '), t->attr_moins, t->length_field);
 	return (s);

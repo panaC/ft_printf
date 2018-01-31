@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:24:59 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/29 14:46:32 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/31 15:56:01 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int			search_next_format(const char *s)
 	if (!s || s[i] == '\0')
 		return (0);
 	while (s && s[i] && s[i] != '%')
+		i++;
+	if (s && s[i] == '%')
 		i++;
 	while (s && s[i] && ft_strchr(STR_FORMAT_CHAR, s[i]) == NULL)
 		i++;

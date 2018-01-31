@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 09:09:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/30 14:57:15 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/31 18:53:57 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,13 @@ char					*param_attribut_uox(t_format *t, char *s)
 	tmp = s;
 	if (t->attr_dieze)
 	{
-		tmp = ft_strjoin(((t->op == 'x') ? "0x" : "0X"), s);
+		if (t->op == 'x' || t->op == 'X')
+			tmp = ft_strjoin(((t->op == 'x') ? "0x" : "0X"), s);
+		else if (t->op == 'o' || t->op == 'O')
+			tmp = ft_strjoin(((s[0] == '0') ? "" : "0"), s);
 	}
-	s = fill_length_param(tmp,
-			(t->attr_0 ? '0' : ' '), t->attr_moins, t->length_field);
+	s = fill_length_param(tmp, ((t->attr_0 && !t->attr_dieze) ? '0' : ' '),
+			t->attr_moins, t->length_field);
 	return (s);
 }
 
@@ -65,9 +68,9 @@ char					*conv_format_uox(t_format *t)
 	char					*tmp;
 	unsigned long long int	value;
 
-	value = cast_format_uox(t);
 	if (t->op == 'O' || t->op == 'U')
 		t->length_type = code_l;
+	value = cast_format_uox(t);
 	if (t->op == 'x' || t->op == 'X')
 		ret = ft_itoa_base_long(value, ((t->op == 'x') ? BASE_SX : BASE_BX));
 	else if (t->op == 'o' || t->op == 'O')

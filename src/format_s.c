@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:20:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/31 11:24:54 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/01/31 19:19:17 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ char				*param_precision_s(t_format *t, char *s)
 
 	i = 0;
 	if (!s)
-		return (ft_strdup("(null)"));
-	ret = ft_strdup(s);
+		ret = ft_strdup("(null)");
+	else
+		ret = ft_strdup(s);
 	while (ret && ret[i] && t->precision)
 	{
 		t->precision--;
@@ -70,8 +71,6 @@ char			*param_precision_s_unicode(t_format *t, wint_t *s)
 		tmp = ret;
 		i++;
 	}
-	if (!ret)
-		return (ft_strdup(""));
 	return (ret);
 }
 
