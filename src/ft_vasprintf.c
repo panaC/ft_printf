@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 13:56:04 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/31 18:09:06 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/01 13:42:11 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int			ft_vasprintf(char **ret, const char *s, va_list ap)
 	char		*str_recurs;
 	char		*tmp;
 	t_format	*t;
+	int			tmp_size;
 
 	t = init_struct();
 	if (((size_end = search_next_format(s))) == 0)
@@ -57,12 +58,14 @@ int			ft_vasprintf(char **ret, const char *s, va_list ap)
 	if (!(ft_strrchr(*ret, '%') == (*ret + ft_strlen(*ret) - 1)))
 		va_arg(ap, void*);
 	va_copy(bck, ap);
-	ft_vasprintf(&str_recurs, s + size_end, bck);
+	tmp_size = ft_vasprintf(&str_recurs, s + size_end, bck);
 	resolve_format(&tmp, *ret, t);
 	ft_memdel((void**)ret);
-	*ret = ft_strjoin(tmp, str_recurs);
+	*ret = ft_strnjoin(tmp, ((t->val_ret > 0) ? (size_t)t->val_ret : 0),
+			str_recurs, ((tmp_size > 0) ? (size_t)tmp_size : 0));
 	ft_memdel((void**)&str_recurs);
 	ft_memdel((void**)&tmp);
+	tmp_size += t->val_ret;
 	ft_memdel((void**)&t);
-	return (ft_strlen(*ret));
+	return (tmp_size);
 }

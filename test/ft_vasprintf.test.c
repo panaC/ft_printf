@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 14:35:10 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/31 20:05:51 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/01 14:46:58 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -556,7 +556,7 @@ static int		vpf_30_(char *e, ...)
 	char *s;
 	char *vp = ft_strnew(100);
 	ft_vasprintf(&s, e, ap);
-	sprintf(vp, " %C ", (wint_t)-2);
+	sprintf(vp, "%C", (wint_t)-2);
 	RS(vp, s);
 	va_end(ap);
 	return (0);
@@ -565,6 +565,25 @@ static int		vpf_30_(char *e, ...)
 static int		vpf_30()
 {
 	return (vpf_30_("%C", (wint_t)-2));
+}
+
+static int		vpf_31_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	ft_vasprintf(&s, e, ap);
+	sprintf(vp, "cc%#.4X et %#0012x %#04hX !!", 0xaef, 0xe, (unsigned short)0);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_31()
+{
+	return (vpf_31_("cc%#.4X et %#0012x %#04hX !!", 0xaef, 0xe, (unsigned short)0));
 }
 
 int ft_vasprintf_test()
@@ -599,5 +618,7 @@ int ft_vasprintf_test()
 	_verify(vpf_27);
 	_verify(vpf_28);
 	_verify(vpf_29);
+	_verify(vpf_30);
+	_verify(vpf_31);
 	return (0);
 }

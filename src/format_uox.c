@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 09:09:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/31 18:53:57 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/01 15:52:01 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,26 @@ char					*param_attribut_uox(t_format *t, char *s)
 
 	param_attr(t);
 	tmp = s;
-	if (t->attr_dieze)
+	if (t->flag_pc)
+		t->flag_pc = FALSE;
+	if (t->attr_dieze && (t->op == 'x' || t->op == 'X'))
 	{
-		if (t->op == 'x' || t->op == 'X')
-			tmp = ft_strjoin(((t->op == 'x') ? "0x" : "0X"), s);
-		else if (t->op == 'o' || t->op == 'O')
-			tmp = ft_strjoin(((s[0] == '0') ? "" : "0"), s);
+		if (t->attr_0)
+			tmp = fill_length_param(s, '0', t->attr_moins, t->length_field - 2);
+		s = ft_strjoin(((t->op == 'x') ? "0x" : "0X"), tmp);
+		//ft_memdel((void**)&tmp);
 	}
-	s = fill_length_param(tmp, ((t->attr_0 && !t->attr_dieze) ? '0' : ' '),
-			t->attr_moins, t->length_field);
+	else if (t->attr_dieze && (t->op == 'o' || t->op == 'O'))
+	{
+		if (t->attr_0)
+			tmp = fill_length_param(s, '0', t->attr_moins, ((s[0] == '0') ?
+						t->length_field : t->length_field - 1));
+		s = ft_strjoin(((s[0] == '0') ? "" : "0"), tmp);
+		//ft_memdel((void**)&tmp);
+	}
+	else
+		s = fill_length_param(tmp, ((t->attr_0) ? '0' : ' '),
+					t->attr_moins, t->length_field);
 	return (s);
 }
 
@@ -71,6 +82,8 @@ char					*conv_format_uox(t_format *t)
 	if (t->op == 'O' || t->op == 'U')
 		t->length_type = code_l;
 	value = cast_format_uox(t);
+	if (!t->flag_pc && value == 0)
+		t->attr_dieze = FALSE;
 	if (t->op == 'x' || t->op == 'X')
 		ret = ft_itoa_base_long(value, ((t->op == 'x') ? BASE_SX : BASE_BX));
 	else if (t->op == 'o' || t->op == 'O')
@@ -81,5 +94,9 @@ char					*conv_format_uox(t_format *t)
 	ft_memdel((void**)&ret);
 	ret = param_attribut_uox(t, tmp);
 	ft_memdel((void**)&tmp);
+	if (!ret)
+		t->val_ret = -1;
+	else
+		t->val_ret = ft_strlen(ret);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:45:23 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/31 17:27:21 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/01 11:09:53 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,9 @@ char				*conv_format_d(t_format *t)
 	ft_memdel((void**)&ret);
 	ret = param_attribut_d(t, value, tmp);
 	ft_memdel((void**)&tmp);
+	if (!ret)
+		t->val_ret = -1;
+	else
+		t->val_ret = ft_strlen(ret);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:19:26 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/31 13:41:36 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/01 11:17:58 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct		s_format
 	t_length		length_type;
 	char			op;
 	va_list			arg;
+	int				val_ret;
+	t_bool			flag_pc;
 }					t_format;
 
 int					ft_vasprintf(char **ret, const char *s, va_list ap);

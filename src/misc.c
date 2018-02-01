@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:08:44 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/27 17:24:44 by pierre           ###   ########.fr       */
+/*   Updated: 2018/02/01 11:18:16 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ t_format		*init_struct(void)
 	ret->precision = -1;
 	ret->length_type = code_none;
 	ret->op = -1;
+	ret->val_ret = 0;
+	ret->flag_pc = FALSE;
 	return (ret);
 }

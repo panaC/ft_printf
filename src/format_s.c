@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:20:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/31 19:19:17 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/01 14:13:05 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ char				*param_precision_s(t_format *t, char *s)
 		t->precision--;
 		i++;
 	}
-	ret[i] = '\0';
+	if (ret)
+		ret[i] = '\0';
+//	t->val_ret = i;
 	return (ret);
 }
 
@@ -59,11 +61,12 @@ char			*param_precision_s_unicode(t_format *t, wint_t *s)
 		return (ft_strdup("(null)"));
 	while (s && s[i] && t->precision)
 	{
-		uni = unicode(s[i]);
+		t->val_ret = ((unicode(&uni, s[i]) < 0) ? -1 :
+				t->val_ret + unicode(&uni, s[i]));
 		ret = ft_strjoin(tmp, uni);
 		if (t->precision > 0)
 		{
-			t->precision -= ft_strlen(uni);
+			t->precision -= t->val_ret;
 			t->precision = ((t->precision < 0) ? 0 : t->precision);
 		}
 		ft_memdel((void**)&tmp);
@@ -99,5 +102,9 @@ char				*conv_format_s(t_format *t)
 		tmp = param_precision_s(t, (char*)str);
 	ret = param_attribut_s(t, tmp);
 	ft_memdel((void**)&tmp);
+	if (!ret)
+		t->val_ret = -1;
+	else
+		t->val_ret = ft_strlen(ret);
 	return (ret);
 }

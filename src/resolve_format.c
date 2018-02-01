@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:56:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/31 18:10:02 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/01 13:50:27 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char		*conv_format_p(t_format *t)
 	t->attr_dieze = TRUE;
 	t->length_type = code_l;
 	t->op = 'x';
+	t->flag_pc = TRUE;
 	return(conv_format_uox(t));
 }
 
@@ -39,6 +40,10 @@ char		*conv_format_pc(t_format *t)
 	ret = fill_length_param(tmp, (t->attr_0 ? '0' : ' '), t->attr_moins,
 			t->length_field);
 	ft_memdel((void**)&tmp);
+	if (!ret)
+		t->val_ret = -1;
+	else
+		t->val_ret = ft_strlen(ret);
 	return (ret);
 }
 
@@ -64,6 +69,7 @@ char		*mae_format(char *s, t_format *t)
 		else if (*s == '%')
 			return (conv_format_pc(t));
 	}
+	t->val_ret = -1;
 	return (NULL);
 }
 
@@ -83,10 +89,12 @@ void		resolve_format(char **ret, char *str, t_format *t)
 		else
 		{
 			*str = '\0';
-			*ret = ft_strjoin(s, tmp);
+			*ret = ft_strnjoin(s, ft_strlen(s), tmp,
+					((t->val_ret > 0) ? (size_t)t->val_ret : 0));
 			ft_memdel((void**)&tmp);
 		}
 	}
 	else if (str && *str == '\0')
 		*ret = ft_strdup(s);
+	t->val_ret += ft_strlen(s);
 }
