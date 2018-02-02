@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 08:59:30 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/01 13:21:15 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/02 09:20:20 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 
 void			param_attr(t_format *t);
 char			*param_precision(int precision, char *s);
-int				unicode(char **ret, wint_t c);
+int				unicode(char **ret, wint_t c, t_bool op);
 
 #endif

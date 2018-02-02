@@ -6,12 +6,12 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:37:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/27 23:31:48 by pierre           ###   ########.fr       */
+/*   Updated: 2018/02/02 08:24:01 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include <libft.h>
+#include "../libft/includes/libft.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "../inc/ft_printf.h"
@@ -22,6 +22,8 @@ char		*fill_length_param(char *s, char car, t_bool is_left, size_t size)
 	char	*tmp;
 	size_t	sz;
 
+	if ((int)size < 0)
+		size = 0;
 	if (s == NULL)
 		return (ft_strdup(""));
 	sz = size - ft_strlen(s);

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 09:00:30 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/01 15:32:18 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/02 09:19:47 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void			param_attr(t_format *t)
 {
 	if (t->attr_0 && t->attr_moins)
 		t->attr_0 = FALSE;
-	if (t->attr_0 && t->precision > 0)
+	if (t->attr_0 && t->precision >= 0)
 		t->attr_0 = FALSE;
 	if (t->attr_plus && t->attr_space)
 		t->attr_space = FALSE;
@@ -46,13 +46,13 @@ char			*param_precision(int precision, char *s)
 	return (ft_strdup(s));
 }
 
-int			unicode(char **ret, wint_t c)
+int			unicode(char **ret, wint_t c, t_bool op)
 {
 	int			i;
 
 	i = -1;
 	(*ret) = ft_strnew(4);
-	if (c >= 0 && c <= 0x7F)
+	if ((c >= 0 || op) && c <= 0x7F)
 		(*ret)[++i] = c;
 	else if (c >= 0 && c <= 0x7FF)
 	{

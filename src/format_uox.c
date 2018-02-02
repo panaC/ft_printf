@@ -6,12 +6,12 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 09:09:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/01 15:52:01 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/02 08:54:19 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include <libft.h>
+#include "../libft/includes/libft.h"
 #include <stdint.h>
 #include <stdio.h>
 #include "format_uox.h"
@@ -50,6 +50,44 @@ char					*param_attribut_uox(t_format *t, char *s)
 
 	param_attr(t);
 	tmp = s;
+	if (t->op == 'x' || t->op == 'X')
+	{
+		if (t->attr_dieze && !t->attr_0)
+			s  = ft_strjoin(((t->op == 'x') ? "0x" : "0X"), tmp);
+		tmp = fill_length_param(s, ((t->attr_0) ? '0' : ' '), t->attr_moins,
+				((t->attr_dieze && t->attr_0) ? t->length_field - 2 : t->length_field));
+		if (t->attr_dieze && t->attr_0)
+		{
+			s  = ft_strjoin(((t->op == 'x') ? "0x" : "0X"), tmp);
+			ft_strdel(&tmp);
+		}
+		else
+			s = tmp;
+	}
+	else if (t->op == 'o' || t->op == 'O')
+	{
+		if (t->attr_dieze && !t->attr_0 && s[0] != '0')
+			s  = ft_strjoin("0", tmp);
+		tmp = fill_length_param(s, ((t->attr_0) ? '0' : ' '), t->attr_moins,
+				((t->attr_dieze && s[0] != '0') ?
+				 t->length_field - 1 : t->length_field));
+		if (t->attr_dieze && t->attr_0)
+		{
+			s = ft_strjoin(((s[0] == '0') ? "" : "0"), tmp);
+			ft_strdel(&tmp);
+		}
+		else
+			s = tmp;
+	}
+	else
+		s = fill_length_param(tmp, ((t->attr_0) ? '0' : ' '),
+					t->attr_moins, t->length_field);
+	return (s);
+
+	/*
+	 * ****************************************
+	 */
+	/*
 	if (t->flag_pc)
 		t->flag_pc = FALSE;
 	if (t->attr_dieze && (t->op == 'x' || t->op == 'X'))
@@ -71,6 +109,7 @@ char					*param_attribut_uox(t_format *t, char *s)
 		s = fill_length_param(tmp, ((t->attr_0) ? '0' : ' '),
 					t->attr_moins, t->length_field);
 	return (s);
+	*/
 }
 
 char					*conv_format_uox(t_format *t)

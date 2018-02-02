@@ -6,11 +6,11 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:20:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/01 14:13:05 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/02 09:21:29 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "../libft/includes/libft.h"
 #include <stdarg.h>
 #include <stdio.h>
 #include <wchar.h>
@@ -61,8 +61,8 @@ char			*param_precision_s_unicode(t_format *t, wint_t *s)
 		return (ft_strdup("(null)"));
 	while (s && s[i] && t->precision)
 	{
-		t->val_ret = ((unicode(&uni, s[i]) < 0) ? -1 :
-				t->val_ret + unicode(&uni, s[i]));
+		t->val_ret = ((unicode(&uni, s[i], FALSE) < 0) ? -1 :
+				t->val_ret + unicode(&uni, s[i], FALSE));
 		ret = ft_strjoin(tmp, uni);
 		if (t->precision > 0)
 		{

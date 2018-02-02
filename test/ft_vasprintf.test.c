@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 14:35:10 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/01 14:46:58 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/02 10:59:33 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -500,7 +500,6 @@ static int		vpf_27_(char *e, ...)
 	char *vp = ft_strnew(100);
 	ft_vasprintf(&s, e, ap);
 	sprintf(vp, "%c", '\0');
-	ft_print_memory(vp, 5);
 	RS(vp, s);
 	va_end(ap);
 	return (0);
@@ -586,6 +585,47 @@ static int		vpf_31()
 	return (vpf_31_("cc%#.4X et %#0012x %#04hX !!", 0xaef, 0xe, (unsigned short)0));
 }
 
+static int		vpf_32_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	ft_vasprintf(&s, e, ap);
+	sprintf(vp, "%c", -21);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_32()
+{
+	return (vpf_32_("%c", -21));
+}
+
+static int		vpf_33_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0);
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_33()
+{
+	return (vpf_33_("hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0));
+}
+
 int ft_vasprintf_test()
 {
 	PT;
@@ -620,5 +660,7 @@ int ft_vasprintf_test()
 	_verify(vpf_29);
 	_verify(vpf_30);
 	_verify(vpf_31);
+	_verify(vpf_32);
+	_verify(vpf_33);
 	return (0);
 }

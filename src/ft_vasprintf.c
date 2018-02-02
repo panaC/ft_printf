@@ -6,13 +6,13 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 13:56:04 by pierre            #+#    #+#             */
-/*   Updated: 2018/02/01 13:42:11 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/02 11:03:39 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <stdio.h>
-#include <libft.h>
+#include "../libft/includes/libft.h"
 #include "../inc/ft_printf.h"
 #include "../src/resolve_format.h"
 
