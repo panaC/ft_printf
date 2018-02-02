@@ -8,3 +8,4 @@ test/test
 *.o
 *.bak
 *.gch
+*.a
