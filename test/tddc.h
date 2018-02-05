@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 11:08:13 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/30 16:51:56 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/05 18:08:06 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ extern int		tests_run;
 #define RU(v1, v2) do { \
 	printf("%s : attendu '%S' : obtenu '%S'\n", __func__, v1, v2); \
 	_assert(v1 == v2); \
+	}while(0)
+#define RM(v1, v2) do { \
+	printf("%s : attendu '%S' : obtenu '%S'\n", __func__, v1, v2); \
+	_assert(ft_memcmp(v1, v2, val_r) == 0); \
 	}while(0)
 
 

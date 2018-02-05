@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:20:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/05 13:52:51 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/05 17:42:13 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ char			*param_precision_s_unicode(t_format *t, wint_t *s)
 	char			*uni;
 
 	i = 0;
-	tmp = ft_strnew(1);
 	if (!s)
 		return (ft_strdup("(null)"));
+	tmp = ft_strnew(1);
 	while (s && s[i] && t->precision)
 	{
 		t->val_ret = ((unicode(&uni, s[i], FALSE) < 0) ? -1 :
@@ -81,7 +81,6 @@ char				*param_attribut_s(t_format *t, char *s)
 {
 	char			*tmp;
 
-	//param_attr(t);
 	tmp = fill_length_param(s, (t->attr_0 ? '0' : ' '), t->attr_moins, t->length_field);	
 	return (tmp);
 }
@@ -97,14 +96,19 @@ char				*conv_format_s(t_format *t)
 		t->length_type = code_l;
 	str = cast_format_s(t);
 	if (t->op == 'S')
-		tmp = param_precision_s_unicode(t, str);
+	{
+		ret = param_precision_s_unicode(t, str);
+	}
 	else
+	{
 		tmp = param_precision_s(t, (char*)str);
-	ret = param_attribut_s(t, tmp);
-	ft_memdel((void**)&tmp);
+		ret = param_attribut_s(t, tmp);
+		t->val_ret = ft_strlen(ret);
+	}
+	//ft_memdel((void**)&tmp);
 	if (!ret)
 		t->val_ret = -1;
-	else
+	else if (!t->val_ret)
 		t->val_ret = ft_strlen(ret);
 	return (ret);
 }

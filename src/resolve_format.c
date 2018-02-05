@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:56:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/05 13:16:42 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/05 17:08:46 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void		resolve_format(char **ret, char *str, t_format *t)
 			*str = '\0';
 			*ret = ft_strnjoin(s, ft_strlen(s), tmp,
 					((t->val_ret > 0) ? (size_t)t->val_ret : 0));
-			ft_strdel(&tmp);
+			//ft_strdel(&tmp);
 		}
 		else
 			*ret = ft_strdup("");

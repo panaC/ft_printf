@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 16:01:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/05 13:50:17 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/05 18:38:28 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ char				*param_attribut_c(t_format *t, char *s)
 		tmp = s;
 	}
 	else
+	{
+		t->length_field = (t->length_field / t->val_ret) * t->val_ret;
 		tmp = fill_length_param(s, ' ', t->attr_moins, t->length_field);	
+	}
 	return (tmp);
 }
 
@@ -56,6 +59,8 @@ char				*conv_format_c(t_format *t)
 	if (t->op == 'C')
 		t->length_type = code_l;
 	value = cast_format_c(t);
+	if (t->length_type == code_l)
+		t->op = 'C';
 	t->val_ret = unicode(&tmp, value, (t->op == 'c') ? 1 : 0);
 	ret = param_attribut_c(t, tmp);
 	t->val_ret = ((t->length_field > 0) ? t->length_field : t->val_ret);

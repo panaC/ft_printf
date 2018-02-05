@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 14:35:10 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/05 13:52:16 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/05 18:36:59 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -613,9 +613,7 @@ static int		vpf_33_(char *e, ...)
 	char *vp = ft_strnew(100);
 	int val_r;
 	val_r = ft_vasprintf(&s, e, ap);
-	printf("ret %d\n", val_r);
 	val_r = sprintf(vp, "hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0);
-	printf("ret %d\n", val_r);
 	RS(vp, s);
 	va_end(ap);
 	return (0);
@@ -635,9 +633,7 @@ static int		vpf_34_(char *e, ...)
 	char *vp = ft_strnew(100);
 	int val_r;
 	val_r = ft_vasprintf(&s, e, ap);
-	printf("ret %d\n", val_r);
 	val_r = sprintf(vp, "@moulitest: %#.o %#.0o", 0, 0);
-	printf("ret %d\n", val_r);
 	RS(vp, s);
 	va_end(ap);
 	return (0);
@@ -657,9 +653,7 @@ static int		vpf_35_(char *e, ...)
 	char *vp = ft_strnew(100);
 	int val_r;
 	val_r = ft_vasprintf(&s, e, ap);
-	printf("ret %d\n", val_r);
 	val_r = sprintf(vp, "% Zoooo", 42);
-	printf("ret %d\n", val_r);
 	RS(vp, s);
 	va_end(ap);
 	return (0);
@@ -679,9 +673,7 @@ static int		vpf_36_(char *e, ...)
 	char *vp = ft_strnew(100);
 	int val_r;
 	val_r = ft_vasprintf(&s, e, ap);
-	printf("ret %d\n", val_r);
 	val_r = sprintf(vp, "allo%#0 +- +      20ma", 0, 42);
-	printf("ret %d\n", val_r);
 	RS(vp, s);
 	va_end(ap);
 	return (0);
@@ -701,9 +693,7 @@ static int		vpf_37_(char *e, ...)
 	char *vp = ft_strnew(100);
 	int val_r;
 	val_r = ft_vasprintf(&s, e, ap);
-	printf("ret %d\n", val_r);
 	val_r = sprintf(vp, "%");
-	printf("ret %d\n", val_r);
 	RS(vp, s);
 	va_end(ap);
 	return (0);
@@ -723,9 +713,7 @@ static int		vpf_38_(char *e, ...)
 	char *vp = ft_strnew(100);
 	int val_r;
 	val_r = ft_vasprintf(&s, e, ap);
-	printf("ret %d\n", val_r);
 	val_r = sprintf(vp, "{%}");
-	printf("ret %d\n", val_r);
 	RS(vp, s);
 	va_end(ap);
 	return (0);
@@ -745,9 +733,7 @@ static int		vpf_39_(char *e, ...)
 	char *vp = ft_strnew(100);
 	int val_r;
 	val_r = ft_vasprintf(&s, e, ap);
-	printf("ret %d\n", val_r);
 	val_r = sprintf(vp, "{%10R}");
-	printf("ret %d\n", val_r);
 	RS(vp, s);
 	va_end(ap);
 	return (0);
@@ -767,9 +753,7 @@ static int		vpf_40_(char *e, ...)
 	char *vp = ft_strnew(100);
 	int val_r;
 	val_r = ft_vasprintf(&s, e, ap);
-	printf("ret %d\n", val_r);
 	val_r = sprintf(vp, "%c", 200);
-	printf("ret %d\n", val_r);
 	RS(vp, s);
 	va_end(ap);
 	return (0);
@@ -789,9 +773,7 @@ static int		vpf_41_(char *e, ...)
 	char *vp = ft_strnew(100);
 	int val_r;
 	val_r = ft_vasprintf(&s, e, ap);
-	printf("ret %d\n", val_r);
 	val_r = sprintf(vp, "{%03c}", 0);
-	printf("ret %d\n", val_r);
 	RS(vp, s);
 	va_end(ap);
 	return (0);
@@ -811,9 +793,7 @@ static int		vpf_42_(char *e, ...)
 	char *vp = ft_strnew(100);
 	int val_r;
 	val_r = ft_vasprintf(&s, e, ap);
-	printf("ret %d\n", val_r);
 	val_r = sprintf(vp, "{%05s}", "abc");
-	printf("ret %d\n", val_r);
 	RS(vp, s);
 	va_end(ap);
 	return (0);
@@ -824,6 +804,159 @@ static int		vpf_42()
 	return (vpf_42_("{%05s}", "abc"));
 }
 
+static int		vpf_43_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "%S", NULL);
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_43()
+{
+	return (vpf_43_("%S", NULL));
+}
+
+static int		vpf_44_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "% S", NULL);
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_44()
+{
+	return (vpf_44_("% S", NULL));
+}
+
+static int		vpf_45_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "%lc", 0x4e6);
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_45()
+{
+	return (vpf_45_("%lc", 0x4e6));
+}
+
+
+static int		vpf_46_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "%C", 0xbffe);
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_46()
+{
+	return (vpf_46_("%C", 0xbffe));
+}
+
+
+static int		vpf_47_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "%lc", 254);
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_47()
+{
+	return (vpf_47_("%lc", 254));
+}
+
+static int		vpf_48_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "%-1C", 2250);
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_48()
+{
+	return (vpf_48_("%-1C", 2250));
+}
+
+/*static int		vpf_45_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	val_r = sprintf(vp, "%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S", L"Α α", L"Β β", L"Γ γ", L"Δ δ", L"Ε ε", L"Ζ ζ", L"Η η", L"Θ θ", L"Ι ι", L"Κ κ", L"Λ λ", L"Μ μ", L"Ν ν", L"Ξ ξ", L"Ο ο", L"Π π", L"Ρ ρ", L"Σ σ", L"Τ τ", L"Υ υ", L"Φ φ", L"Χ χ", L"Ψ ψ", L"Ω ω", L"");
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_45()
+{
+	return (vpf_43_("%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S", L"Α α", L"Β β", L"Γ γ", L"Δ δ", L"Ε ε", L"Ζ ζ", L"Η η", L"Θ θ", L"Ι ι", L"Κ κ", L"Λ λ", L"Μ μ", L"Ν ν", L"Ξ ξ", L"Ο ο", L"Π π", L"Ρ ρ", L"Σ σ", L"Τ τ", L"Υ υ", L"Φ φ", L"Χ χ", L"Ψ ψ", L"Ω ω", L""));
+}*/
 
 int ft_vasprintf_test()
 {
@@ -842,7 +975,7 @@ int ft_vasprintf_test()
 	_verify(vpf_12);
 	_verify(vpf_13);
 	_verify(vpf_14);
-	_verify(vpf_15);
+//	_verify(vpf_15);
 	_verify(vpf_16);
 	_verify(vpf_17);
 	_verify(vpf_18);
@@ -870,5 +1003,11 @@ int ft_vasprintf_test()
 	_verify(vpf_40);
 	_verify(vpf_41);
 	_verify(vpf_42);
+	_verify(vpf_43);
+	_verify(vpf_44);
+	_verify(vpf_45);
+	_verify(vpf_46);
+	_verify(vpf_47);
+	_verify(vpf_48);
 	return (0);
 }
