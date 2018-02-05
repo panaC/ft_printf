@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:45:23 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/01 11:09:53 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/02 13:19:11 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ long long int		cast_format_d(t_format *t)
 char				*param_precision_d(int precision,
 		long long int value, char *s)
 {
-	char	*str_zero;
-
 	if (value == 0 && precision == 0)
 		return (ft_strdup(""));
 	if (precision <= (int)ft_strlen(s))

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 16:01:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/02 11:03:38 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/05 13:50:17 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char				*param_attribut_c(t_format *t, char *s)
 	tmp = s;
 	if (t->op == 'c' && s[0] == 0)
 	{
-		tmp = fill_length_param(s, ' ', t->attr_moins, t->length_field - 1);
+		tmp = fill_length_param(s, (t->attr_0 ? '0' : ' '), t->attr_moins, t->length_field - 1);
 		if (t->attr_moins)
 			s = ft_strnjoin(s, 1, tmp, ((t->length_field < 0) ? 0 : t->length_field));
 		else

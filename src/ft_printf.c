@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 13:37:01 by pierre            #+#    #+#             */
-/*   Updated: 2018/02/02 11:05:05 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/02 16:25:59 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int				ft_printf(const char *s, ...)
 	sl = ft_vasprintf(&str, s, ap);
 	va_end(ap);
 	if (sl > 0)
+	{
 		write(1, str, sl);
+	}
 	if (size >= 0)
 		size = sl;
 	return (size);

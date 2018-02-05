@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:56:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/02 11:04:39 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/05 13:16:42 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,56 @@ char		*conv_format_pc(t_format *t)
 	return (ret);
 }
 
-char		*mae_format(char *s, t_format *t)
+char			*conv_format_unknown(t_format *t, char *s)
 {
 	char		*ret;
-	t_format	tmp;
+	char		*tmp;
 
+	tmp = ft_strnew(1);
+	tmp[0] = t->op;
+	ret = fill_length_param(tmp, ' ', t->attr_moins, t->length_field);
+	ft_strdel(&tmp);
+	if (s && s[0] && s[1])
+	{
+		s = ft_strjoin(ret, s + 1);
+		ft_strdel(&ret);
+		ret = s;
+	}
+	if (!ret)
+		t->val_ret = -1;
+	else
+		t->val_ret = ft_strlen(ret);
+	return (ret);
+}
+
+t_bool		mae_format(char **ret, char *s, t_format *t)
+{
+	char *tmp;
+
+	tmp = NULL;
 	if (s || *s)
 	{
 		t->op = *s;
 		if (*s == 'd' || *s == 'D' || *s == 'i')
-			return (conv_format_d(t));
+			*ret = conv_format_d(t);
 		else if (*s == 's' || *s == 'S')
-			return (conv_format_s(t));
+			*ret = conv_format_s(t);
 		else if (*s == 'p')
-			return (conv_format_p(t));
+			*ret = conv_format_p(t);
 		else if (*s == 'o' || *s == 'O' || *s == 'u' || *s == 'U' ||
 				*s == 'x' || *s == 'X')
-			return(conv_format_uox(t));
+			*ret = conv_format_uox(t);
 		else if (*s == 'c' || *s == 'C')
-			return (conv_format_c(t));
+			*ret = conv_format_c(t);
 		else if (*s == '%')
-			return (conv_format_pc(t));
+			*ret = conv_format_pc(t);
+		else
+			*ret = conv_format_unknown(t, s);
+		return (1);
 	}
+	*ret = NULL;
 	t->val_ret = -1;
-	return (NULL);
+	return (0);
 }
 
 void		resolve_format(char **ret, char *str, t_format *t)
@@ -84,15 +110,15 @@ void		resolve_format(char **ret, char *str, t_format *t)
 		str++;
 	if (str && *str == '%')
 	{
-		if (!((tmp = mae_format(mae_parse(str + 1, t), t))))
-			*ret = ft_strdup("");
-		else
+		if (mae_format(&tmp, mae_parse(str + 1, t), t))
 		{
 			*str = '\0';
 			*ret = ft_strnjoin(s, ft_strlen(s), tmp,
 					((t->val_ret > 0) ? (size_t)t->val_ret : 0));
-			ft_memdel((void**)&tmp);
+			ft_strdel(&tmp);
 		}
+		else
+			*ret = ft_strdup("");
 	}
 	else if (str && *str == '\0')
 		*ret = ft_strdup(s);

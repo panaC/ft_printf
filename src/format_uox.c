@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 09:09:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/02 08:54:19 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/02 14:20:22 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ unsigned long long int	cast_format_uox(t_format *t)
 char					*param_precision_uox(int precision,
 		unsigned long long int value, char *s)
 {
-	char	*str_zero;
-
 	if (value == 0 && precision == 0)
 		return (ft_strdup(""));
 	return (param_precision(precision, s));
@@ -121,7 +119,7 @@ char					*conv_format_uox(t_format *t)
 	if (t->op == 'O' || t->op == 'U')
 		t->length_type = code_l;
 	value = cast_format_uox(t);
-	if (!t->flag_pc && value == 0)
+	if (!t->flag_pc && value == 0 && (t->op == 'x' || t->op == 'X'))
 		t->attr_dieze = FALSE;
 	if (t->op == 'x' || t->op == 'X')
 		ret = ft_itoa_base_long(value, ((t->op == 'x') ? BASE_SX : BASE_BX));

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 10:05:24 by pleroux           #+#    #+#             */
-/*   Updated: 2018/01/29 15:30:26 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/05 13:21:51 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int mf_01__(t_format *t)
 	char *s;
 	s = mae_parse("#0 +- +      20.-10hda", t);
 	char *d;
-	d = mae_format(s, t);
+	mae_format(&d, s, t);
 	char *e = "+42                 ";
 	RS(e, d);
 	return (0);
@@ -44,7 +44,7 @@ static int mf_02__(t_format *t)
 	char *s;
 	s = mae_parse("#0 +- +      20.-10da", t);
 	char *d;
-	d = mae_format(s, t);
+	mae_format(&d, s, t);
 	char *e = "-94967296           ";
 	RS(e, d);
 	return (0);
@@ -71,7 +71,7 @@ static int mf_03__(t_format *t)
 	char *s;
 	s = mae_parse("#0 +- +      20.-10Da", t);
 	char *d;
-	d = mae_format(s, t);
+	mae_format(&d, s, t);
 	char *e = "+4200000000         ";
 	RS(e, d);
 	return (0);
@@ -98,7 +98,7 @@ static int mf_04__(t_format *t)
 	char *s;
 	s = mae_parse("d", t);
 	char *d;
-	d = mae_format(s, t);
+	mae_format(&d, s, t);
 	char *e = "42";
 	RS(e, d);
 	return (0);
@@ -159,7 +159,7 @@ static int mr_01()
 static int mr_02__(t_format *t)
 {
 	char *e = ft_strdup("allo%#0 +- +      20.-10ma");
-	char *s = "";
+	char *s = "allom                   a";
 	char *r = NULL;
 	resolve_format(&r, e, t);
 	RS(s, r);

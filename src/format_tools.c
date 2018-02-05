@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 09:00:30 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/02 09:19:47 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/05 13:33:05 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			unicode(char **ret, wint_t c, t_bool op)
 
 	i = -1;
 	(*ret) = ft_strnew(4);
-	if ((c >= 0 || op) && c <= 0x7F)
+	if ((c >= 0 || op) && (c <= 0x7F || op))
 		(*ret)[++i] = c;
 	else if (c >= 0 && c <= 0x7FF)
 	{
