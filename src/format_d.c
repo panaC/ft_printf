@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:45:23 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/02 13:19:11 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/06 14:54:16 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,11 @@ char				*param_attribut_d(t_format *t, long long int value,
 		tmp = ft_strjoin(((t->attr_plus) ? "+" : " "), s);
 	s = fill_length_param(tmp,
 			(t->attr_0 ? '0' : ' '), t->attr_moins, t->length_field);
+	ft_strdel(&tmp);
 	return (s);
 }
+
+#include <stdlib.h>
 
 char				*conv_format_d(t_format *t)
 {
@@ -83,9 +86,9 @@ char				*conv_format_d(t_format *t)
 	value = cast_format_d(t);
 	ret = ft_itoa_long(value);
 	tmp = param_precision_d(t->precision, value, ret);
-	ft_memdel((void**)&ret);
+	ft_strdel(&ret);
 	ret = param_attribut_d(t, value, tmp);
-	ft_memdel((void**)&tmp);
+	ft_strdel(&tmp);
 	if (!ret)
 		t->val_ret = -1;
 	else

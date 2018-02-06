@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 11:31:59 by pierre            #+#    #+#             */
-/*   Updated: 2018/01/29 14:42:20 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/06 09:25:39 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,16 @@ int		all_tests()
 }
 
 int main(int argc, char **argv) {
+
 	int result = all_tests();
 	if (result == 0)
 		printf("RESULT : PASSED\n");
 	printf("Tests run: %d\n", tests_run);
+
+	/*
+	for (int i = 0; i < 0xFFFFFFF; i++)
+		write(10, "Chut\n", 5);
+		*/
 
 	return (result != 0);
 }

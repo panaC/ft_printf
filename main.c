@@ -21,9 +21,10 @@ int main()
 
 				    L"Ν ν", L"Ξ ξ", L"Ο ο", L"Π π", L"Ρ ρ", L"Σ σ", L"Τ τ", L"Υ υ", L"Φ φ", L"Χ χ", L"Ψ ψ", L"Ω ω", L"");
 */
-	printf("%C", 0xbffe);
-	printf("\n");
-	ft_printf("%C", 0xbffe);
+	ft_printf("%S", L"Hello world");
+	ft_printf("%+d", 3);
+
+	while (1);
 	
 	return 0;
 }

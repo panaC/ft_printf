@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:56:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/05 17:08:46 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/06 14:38:43 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char		*conv_format_pc(t_format *t)
 	tmp = ft_strdup("%");
 	ret = fill_length_param(tmp, (t->attr_0 ? '0' : ' '), t->attr_moins,
 			t->length_field);
-	ft_memdel((void**)&tmp);
+	ft_strdel(&tmp);
 	if (!ret)
 		t->val_ret = -1;
 	else
@@ -115,7 +115,7 @@ void		resolve_format(char **ret, char *str, t_format *t)
 			*str = '\0';
 			*ret = ft_strnjoin(s, ft_strlen(s), tmp,
 					((t->val_ret > 0) ? (size_t)t->val_ret : 0));
-			//ft_strdel(&tmp);
+			ft_strdel(&tmp);  /* attention ici unicode abort */
 		}
 		else
 			*ret = ft_strdup("");

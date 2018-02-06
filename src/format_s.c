@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:20:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/05 17:42:13 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/06 14:34:43 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char			*param_precision_s_unicode(t_format *t, wint_t *s)
 	char			*tmp;
 	char			*ret;
 	char			*uni;
+	int				val;
 
 	i = 0;
 	if (!s)
@@ -61,16 +62,16 @@ char			*param_precision_s_unicode(t_format *t, wint_t *s)
 	tmp = ft_strnew(1);
 	while (s && s[i] && t->precision)
 	{
-		t->val_ret = ((unicode(&uni, s[i], FALSE) < 0) ? -1 :
-				t->val_ret + unicode(&uni, s[i], FALSE));
+		val = unicode(&uni, s[i], FALSE);
+		t->val_ret = (val < 0) ? -1 : t->val_ret + val;
 		ret = ft_strjoin(tmp, uni);
+		ft_strdel(&tmp);
+		ft_strdel(&uni);
 		if (t->precision > 0)
 		{
 			t->precision -= t->val_ret;
 			t->precision = ((t->precision < 0) ? 0 : t->precision);
 		}
-		ft_memdel((void**)&tmp);
-		ft_memdel((void**)&uni);
 		tmp = ret;
 		i++;
 	}
@@ -95,6 +96,7 @@ char				*conv_format_s(t_format *t)
 	if (t->op == 'S')
 		t->length_type = code_l;
 	str = cast_format_s(t);
+	printf(" %p\n", str);
 	if (t->op == 'S')
 	{
 		ret = param_precision_s_unicode(t, str);
@@ -104,8 +106,8 @@ char				*conv_format_s(t_format *t)
 		tmp = param_precision_s(t, (char*)str);
 		ret = param_attribut_s(t, tmp);
 		t->val_ret = ft_strlen(ret);
+		ft_strdel(&tmp);
 	}
-	//ft_memdel((void**)&tmp);
 	if (!ret)
 		t->val_ret = -1;
 	else if (!t->val_ret)

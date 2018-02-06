@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 09:09:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/02 14:20:22 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/06 14:47:24 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,14 @@ char					*param_attribut_uox(t_format *t, char *s)
 		if (t->attr_dieze && !t->attr_0)
 			s  = ft_strjoin(((t->op == 'x') ? "0x" : "0X"), tmp);
 		tmp = fill_length_param(s, ((t->attr_0) ? '0' : ' '), t->attr_moins,
-				((t->attr_dieze && t->attr_0) ? t->length_field - 2 : t->length_field));
+				((t->attr_dieze && t->attr_0) ? t->length_field - 2 :
+				 t->length_field));
 		if (t->attr_dieze && t->attr_0)
 		{
 			s  = ft_strjoin(((t->op == 'x') ? "0x" : "0X"), tmp);
 			ft_strdel(&tmp);
 		}
-		else
+		else	
 			s = tmp;
 	}
 	else if (t->op == 'o' || t->op == 'O')
@@ -128,9 +129,9 @@ char					*conv_format_uox(t_format *t)
 	else
 		ret = ft_itoa_base_long(value, BASE_D);
 	tmp = param_precision_uox(t->precision, value, ret);
-	ft_memdel((void**)&ret);
+	ft_strdel(&ret);
 	ret = param_attribut_uox(t, tmp);
-	ft_memdel((void**)&tmp);
+	ft_strdel(&tmp);
 	if (!ret)
 		t->val_ret = -1;
 	else
