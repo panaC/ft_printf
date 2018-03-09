@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 13:56:04 by pierre            #+#    #+#             */
-/*   Updated: 2018/02/06 13:51:07 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/03/09 11:40:23 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			ft_vasprintf(char **ret, const char *s, va_list ap)
 	t = init_struct();
 	if (((size_end = search_next_format(s))) == 0)
 	{
-		ft_memdel((void**)&t);
+		//ft_memdel((void**)&t);
 		*ret = ft_strdup("");
 		return (0);
 	}
@@ -61,12 +61,12 @@ int			ft_vasprintf(char **ret, const char *s, va_list ap)
 	va_copy(bck, ap);
 	tmp_size = ft_vasprintf(&str_recurs, s + size_end, bck);
 	resolve_format(&tmp, *ret, t);
-	ft_strdel(ret);
+	//ft_strdel(ret);
 	*ret = ft_strnjoin(tmp, ((t->val_ret > 0) ? (size_t)t->val_ret : 0),
 			str_recurs, ((tmp_size > 0) ? (size_t)tmp_size : 0));
-	ft_strdel(&str_recurs);
-	ft_strdel(&tmp);
+	//ft_strdel(&str_recurs);
+	//ft_strdel(&tmp);
 	tmp_size += t->val_ret;
-	ft_memdel((void**)&t);
+	//ft_memdel((void**)&t);
 	return (tmp_size);
 }

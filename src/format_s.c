@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:20:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/06 14:34:43 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/03/09 14:42:02 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ char			*param_precision_s_unicode(t_format *t, wint_t *s)
 	if (!s)
 		return (ft_strdup("(null)"));
 	tmp = ft_strnew(1);
+	ret = NULL;
 	while (s && s[i] && t->precision)
 	{
 		val = unicode(&uni, s[i], FALSE);
@@ -75,7 +76,7 @@ char			*param_precision_s_unicode(t_format *t, wint_t *s)
 		tmp = ret;
 		i++;
 	}
-	return (ret);
+	return ((ret == NULL && s && s[0] == '\0') ? tmp : ret);
 }
 
 char				*param_attribut_s(t_format *t, char *s)
@@ -86,7 +87,6 @@ char				*param_attribut_s(t_format *t, char *s)
 	return (tmp);
 }
 
-
 char				*conv_format_s(t_format *t)
 {
 	char			*ret;
@@ -96,10 +96,13 @@ char				*conv_format_s(t_format *t)
 	if (t->op == 'S')
 		t->length_type = code_l;
 	str = cast_format_s(t);
-	printf(" %p\n", str);
-	if (t->op == 'S')
+	//printf(" %p\n", str);
+	if (t->op == 'S' || (t->op == 's' && t->length_type == code_l))
 	{
-		ret = param_precision_s_unicode(t, str);
+		tmp = param_precision_s_unicode(t, str);
+		ret = param_attribut_s(t, tmp);
+		t->val_ret = ft_strlen(ret);
+		ft_strdel(&tmp);
 	}
 	else
 	{

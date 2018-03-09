@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:56:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/06 14:38:43 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/02/23 13:58:05 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char		*conv_format_p(t_format *t)
 	t->length_type = code_l;
 	t->op = 'x';
 	t->flag_pc = TRUE;
-	return(conv_format_uox(t));
+	return (conv_format_uox(t));
 }
 
 char		*conv_format_pc(t_format *t)
@@ -39,7 +39,7 @@ char		*conv_format_pc(t_format *t)
 	tmp = ft_strdup("%");
 	ret = fill_length_param(tmp, (t->attr_0 ? '0' : ' '), t->attr_moins,
 			t->length_field);
-	ft_strdel(&tmp);
+	//ft_strdel(&tmp);
 	if (!ret)
 		t->val_ret = -1;
 	else
@@ -55,11 +55,11 @@ char			*conv_format_unknown(t_format *t, char *s)
 	tmp = ft_strnew(1);
 	tmp[0] = t->op;
 	ret = fill_length_param(tmp, ' ', t->attr_moins, t->length_field);
-	ft_strdel(&tmp);
+	//ft_strdel(&tmp);
 	if (s && s[0] && s[1])
 	{
 		s = ft_strjoin(ret, s + 1);
-		ft_strdel(&ret);
+		//ft_strdel(&ret);
 		ret = s;
 	}
 	if (!ret)
@@ -115,7 +115,7 @@ void		resolve_format(char **ret, char *str, t_format *t)
 			*str = '\0';
 			*ret = ft_strnjoin(s, ft_strlen(s), tmp,
 					((t->val_ret > 0) ? (size_t)t->val_ret : 0));
-			ft_strdel(&tmp);  /* attention ici unicode abort */
+			//ft_strdel(&tmp);  /* attention ici unicode abort */
 		}
 		else
 			*ret = ft_strdup("");

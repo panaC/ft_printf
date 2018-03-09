@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:45:23 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/06 14:54:16 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/03/09 11:42:03 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char				*param_attribut_d(t_format *t, long long int value,
 		tmp = ft_strjoin(((t->attr_plus) ? "+" : " "), s);
 	s = fill_length_param(tmp,
 			(t->attr_0 ? '0' : ' '), t->attr_moins, t->length_field);
-	ft_strdel(&tmp);
+	//ft_strdel(&tmp);
 	return (s);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 16:01:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/05 18:38:28 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/03/09 11:42:06 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char				*param_attribut_c(t_format *t, char *s)
 			s = ft_strnjoin(s, 1, tmp, ((t->length_field < 0) ? 0 : t->length_field));
 		else
 			s = ft_strnjoin(tmp, ((t->length_field < 0) ? 0 : t->length_field), s, 1);
-		ft_strdel(&tmp);
+		//ft_strdel(&tmp);
 		tmp = s;
 	}
 	else
@@ -64,7 +64,7 @@ char				*conv_format_c(t_format *t)
 	t->val_ret = unicode(&tmp, value, (t->op == 'c') ? 1 : 0);
 	ret = param_attribut_c(t, tmp);
 	t->val_ret = ((t->length_field > 0) ? t->length_field : t->val_ret);
-	ft_memdel((void**)&tmp);
+	//ft_memdel((void**)&tmp);
 	if (!ret)
 		t->val_ret = -1;
 	return (ret);

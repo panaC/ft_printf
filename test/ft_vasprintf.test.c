@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 14:35:10 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/05 18:36:59 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/03/09 14:37:34 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -958,6 +958,143 @@ static int		vpf_45()
 	return (vpf_43_("%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S", L"Α α", L"Β β", L"Γ γ", L"Δ δ", L"Ε ε", L"Ζ ζ", L"Η η", L"Θ θ", L"Ι ι", L"Κ κ", L"Λ λ", L"Μ μ", L"Ν ν", L"Ξ ξ", L"Ο ο", L"Π π", L"Ρ ρ", L"Σ σ", L"Τ τ", L"Υ υ", L"Φ φ", L"Χ χ", L"Ψ ψ", L"Ω ω", L""));
 }*/
 
+static int		vpf_50_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "%S", L"");
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_50()
+{
+	return (vpf_50_("%S", L""));
+}
+
+
+static int		vpf_49_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S",
+				L"Α α", L"Β β", L"Γ γ", L"Δ δ", L"Ε ε", L"Ζ ζ", L"Η η", L"Θ θ", L"Ι ι", L"Κ κ", L"Λ λ", L"Μ μ",
+					L"Ν ν", L"Ξ ξ", L"Ο ο", L"Π π", L"Ρ ρ", L"Σ σ", L"Τ τ", L"Υ υ", L"Φ φ", L"Χ χ", L"Ψ ψ", L"Ω ω", L"");
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_49()
+{
+	return (vpf_49_("%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S",
+					L"Α α", L"Β β", L"Γ γ", L"Δ δ", L"Ε ε", L"Ζ ζ", L"Η η", L"Θ θ", L"Ι ι", L"Κ κ", L"Λ λ", L"Μ μ",
+						L"Ν ν", L"Ξ ξ", L"Ο ο", L"Π π", L"Ρ ρ", L"Σ σ", L"Τ τ", L"Υ υ", L"Φ φ", L"Χ χ", L"Ψ ψ", L"Ω ω", L""));
+}
+
+static int		vpf_51_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "%lc, %lc", L'暖', L'ح');
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_51()
+{
+	return (vpf_51_("%lc, %lc", L'暖', L'ح'));
+}
+
+static int		vpf_52_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "{%30S}", L"我是一只猫。");
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_52()
+{
+	return (vpf_52_("{%30S}", L"我是一只猫。"));
+}
+
+static int		vpf_53_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "{%30s}", "hello");
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_53()
+{
+	return (vpf_53_("{%30s}", "hello"));
+}
+
+static int		vpf_54_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "{%030S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_54()
+{
+	return (vpf_54_("{%030S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B"));
+}
+
 int ft_vasprintf_test()
 {
 	PT;
@@ -1009,5 +1146,11 @@ int ft_vasprintf_test()
 	_verify(vpf_46);
 	_verify(vpf_47);
 	_verify(vpf_48);
+	_verify(vpf_50);
+	_verify(vpf_49);
+	_verify(vpf_51);
+	_verify(vpf_52);
+	_verify(vpf_53);
+	_verify(vpf_54);
 	return (0);
 }
