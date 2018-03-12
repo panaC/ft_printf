@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 14:35:10 by pleroux           #+#    #+#             */
-/*   Updated: 2018/03/09 14:37:34 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/03/12 14:13:53 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1095,6 +1095,94 @@ static int		vpf_54()
 	return (vpf_54_("{%030S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B"));
 }
 
+static int		vpf_55_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "{%05.Z}", 0);
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_55()
+{
+	return (vpf_55_("{%05.Z}", 0));
+}
+
+static int		vpf_56_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "{%05.S}", L"42 c est cool");
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_56()
+{
+	return (vpf_56_("{%05.S}", L"42 c est cool"));
+}
+
+static int		vpf_57_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "%.4S", L"我是一只猫。");
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_57()
+{
+	return (vpf_57_("%.4S", L"我是一只猫。"));
+}
+
+static int		vpf_58_(char *e, ...)
+{
+	setlocale(LC_ALL, "");
+	va_list ap;
+	va_start(ap, e);
+	char *s;
+	char *vp = ft_strnew(100);
+	int val_r;
+	val_r = ft_vasprintf(&s, e, ap);
+	printf("ret %d\n", val_r);
+	val_r = sprintf(vp, "%4.1S", L"Jambon");
+	printf("ret %d\n", val_r);
+	RS(vp, s);
+	va_end(ap);
+	return (0);
+}
+
+static int		vpf_58()
+{
+	return (vpf_58_("%4.1S", L"Jambon"));
+}
+
 int ft_vasprintf_test()
 {
 	PT;
@@ -1152,5 +1240,9 @@ int ft_vasprintf_test()
 	_verify(vpf_52);
 	_verify(vpf_53);
 	_verify(vpf_54);
+	_verify(vpf_55);
+	_verify(vpf_56);
+	_verify(vpf_57);
+	_verify(vpf_58);
 	return (0);
 }

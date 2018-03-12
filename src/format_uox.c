@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 09:09:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/02/06 14:47:24 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/03/12 14:11:09 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,17 @@ char					*param_attribut_uox(t_format *t, char *s)
 	if (t->op == 'x' || t->op == 'X')
 	{
 		if (t->attr_dieze && !t->attr_0)
+		{
 			s  = ft_strjoin(((t->op == 'x') ? "0x" : "0X"), tmp);
-		tmp = fill_length_param(s, ((t->attr_0) ? '0' : ' '), t->attr_moins,
+			tmp = fill_length_param(s, ((t->attr_0) ? '0' : ' '), t->attr_moins,
+					((t->attr_dieze && t->attr_0) ? t->length_field - 2 :
+				 	t->length_field));
+			ft_strdel(&s);
+		}
+		else
+			tmp = fill_length_param(s, ((t->attr_0) ? '0' : ' '), t->attr_moins,
 				((t->attr_dieze && t->attr_0) ? t->length_field - 2 :
-				 t->length_field));
+			 	t->length_field));
 		if (t->attr_dieze && t->attr_0)
 		{
 			s  = ft_strjoin(((t->op == 'x') ? "0x" : "0X"), tmp);
@@ -66,8 +73,15 @@ char					*param_attribut_uox(t_format *t, char *s)
 	else if (t->op == 'o' || t->op == 'O')
 	{
 		if (t->attr_dieze && !t->attr_0 && s[0] != '0')
+		{
 			s  = ft_strjoin("0", tmp);
-		tmp = fill_length_param(s, ((t->attr_0) ? '0' : ' '), t->attr_moins,
+			tmp = fill_length_param(s, ((t->attr_0) ? '0' : ' '), t->attr_moins,
+				((t->attr_dieze && s[0] != '0') ?
+				 t->length_field - 1 : t->length_field));
+			ft_strdel(&s);
+		}
+		else
+			tmp = fill_length_param(s, ((t->attr_0) ? '0' : ' '), t->attr_moins,
 				((t->attr_dieze && s[0] != '0') ?
 				 t->length_field - 1 : t->length_field));
 		if (t->attr_dieze && t->attr_0)

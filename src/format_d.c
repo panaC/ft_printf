@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:45:23 by pleroux           #+#    #+#             */
-/*   Updated: 2018/03/09 11:42:03 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/03/12 14:30:02 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,10 @@ char				*param_attribut_d(t_format *t, long long int value,
 		char *s)
 {
 	char		*tmp;
-	size_t		sign;
 
 	param_attr(t);
-	sign = ((t->attr_space + t->attr_plus) || value < 0);
 	tmp = s;
-	if (t->attr_0 && sign)
+	if (t->attr_0 && ((t->attr_space + t->attr_plus) || value < 0))
 	{
 		if (value < 0)
 			s = ft_strjoin("-", fill_length_param(tmp,
@@ -67,13 +65,13 @@ char				*param_attribut_d(t_format *t, long long int value,
 		tmp = ft_strjoin("-", s);
 	else if (t->attr_plus || t->attr_space)
 		tmp = ft_strjoin(((t->attr_plus) ? "+" : " "), s);
+	else
+		tmp = ft_strdup(s);
 	s = fill_length_param(tmp,
 			(t->attr_0 ? '0' : ' '), t->attr_moins, t->length_field);
-	//ft_strdel(&tmp);
+	ft_strdel(&tmp);
 	return (s);
 }
-
-#include <stdlib.h>
 
 char				*conv_format_d(t_format *t)
 {

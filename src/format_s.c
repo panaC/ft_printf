@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:20:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/03/09 14:42:02 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/03/12 11:37:26 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,15 @@ char			*param_precision_s_unicode(t_format *t, wint_t *s)
 		ft_strdel(&uni);
 		if (t->precision > 0)
 		{
-			t->precision -= t->val_ret;
+			t->precision -= val;
 			t->precision = ((t->precision < 0) ? 0 : t->precision);
+			if (t->precision < val)
+				break;
 		}
 		tmp = ret;
 		i++;
 	}
-	return ((ret == NULL && s && s[0] == '\0') ? tmp : ret);
+	return ((ret == NULL) ? tmp : ret);
 }
 
 char				*param_attribut_s(t_format *t, char *s)
@@ -96,7 +98,6 @@ char				*conv_format_s(t_format *t)
 	if (t->op == 'S')
 		t->length_type = code_l;
 	str = cast_format_s(t);
-	//printf(" %p\n", str);
 	if (t->op == 'S' || (t->op == 's' && t->length_type == code_l))
 	{
 		tmp = param_precision_s_unicode(t, str);
