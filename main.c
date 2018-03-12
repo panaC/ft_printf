@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/12 16:51:47 by pleroux           #+#    #+#             */
+/*   Updated: 2018/03/12 17:09:15 by pleroux          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inc/ft_printf.h"
 #include "libft/includes/libft.h"
 #include <stdio.h>
@@ -21,10 +33,7 @@ int main()
 
 				    L"Ν ν", L"Ξ ξ", L"Ο ο", L"Π π", L"Ρ ρ", L"Σ σ", L"Τ τ", L"Υ υ", L"Φ φ", L"Χ χ", L"Ψ ψ", L"Ω ω", L"");
 */
-	ft_printf("%S", L"Hello world");
-	ft_printf("%+d", 3);
-
-	while (1);
-	
+	ft_printf("fnowfheo fefh we jfweif i %Cfhewi efhiu eif hweif ewf iue", 0xDFFF);
+	printf("fnowfheo fefh we jfweif i %Cfhewi efhiu eif hweif ewf iue", 0xDFFF);
 	return 0;
 }

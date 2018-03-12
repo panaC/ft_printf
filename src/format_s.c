@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:20:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/03/12 11:37:26 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/03/12 15:10:50 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,10 @@ char				*param_precision_s(t_format *t, char *s)
 	}
 	if (ret)
 		ret[i] = '\0';
-//	t->val_ret = i;
 	return (ret);
 }
 
-char			*param_precision_s_unicode(t_format *t, wint_t *s)
+char				*param_precision_s_unicode(t_format *t, wint_t *s)
 {
 	int				i;
 	char			*tmp;
@@ -56,8 +55,7 @@ char			*param_precision_s_unicode(t_format *t, wint_t *s)
 	char			*uni;
 	int				val;
 
-	i = 0;
-	if (!s)
+	if (!((i = 0)) && !s)
 		return (ft_strdup("(null)"));
 	tmp = ft_strnew(1);
 	ret = NULL;
@@ -69,12 +67,9 @@ char			*param_precision_s_unicode(t_format *t, wint_t *s)
 		ft_strdel(&tmp);
 		ft_strdel(&uni);
 		if (t->precision > 0)
-		{
-			t->precision -= val;
-			t->precision = ((t->precision < 0) ? 0 : t->precision);
-			if (t->precision < val)
-				break;
-		}
+			t->precision = ((t->precision - val < 0) ? 0 : t->precision - val);
+		if (t->precision > 0 && t->precision < val)
+			break ;
 		tmp = ret;
 		i++;
 	}
@@ -85,7 +80,8 @@ char				*param_attribut_s(t_format *t, char *s)
 {
 	char			*tmp;
 
-	tmp = fill_length_param(s, (t->attr_0 ? '0' : ' '), t->attr_moins, t->length_field);	
+	tmp = fill_length_param(s, (t->attr_0 ? '0' : ' '), t->attr_moins,
+			t->length_field);
 	return (tmp);
 }
 
@@ -93,21 +89,19 @@ char				*conv_format_s(t_format *t)
 {
 	char			*ret;
 	char			*tmp;
-	wint_t			*str;
 
 	if (t->op == 'S')
 		t->length_type = code_l;
-	str = cast_format_s(t);
 	if (t->op == 'S' || (t->op == 's' && t->length_type == code_l))
 	{
-		tmp = param_precision_s_unicode(t, str);
+		tmp = param_precision_s_unicode(t, cast_format_s(t));
 		ret = param_attribut_s(t, tmp);
 		t->val_ret = ft_strlen(ret);
 		ft_strdel(&tmp);
 	}
 	else
 	{
-		tmp = param_precision_s(t, (char*)str);
+		tmp = param_precision_s(t, (char*)cast_format_s(t));
 		ret = param_attribut_s(t, tmp);
 		t->val_ret = ft_strlen(ret);
 		ft_strdel(&tmp);

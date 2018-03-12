@@ -6,37 +6,14 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 13:56:04 by pierre            #+#    #+#             */
-/*   Updated: 2018/03/12 11:54:19 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/03/12 17:19:35 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include <stdio.h>
 #include "../libft/includes/libft.h"
 #include "../inc/ft_printf.h"
 #include "../src/resolve_format.h"
-
-/*
-** Fonction Recursif printf
-**
-** vasprintf permet de stocker le resultat dans une chaine de car alloue par la
-** fonction : fonctionnement indentique printf
-*/
-
-	/*
-	 * Recursivite de la fonction
-	 *
-	 * 1er etape/ parcourt de la chaine S :
-	 * 		Tant que le code % n'est pas finis ou qu'il n'y en a pas :
-	 * 			incrementation pointeur
-	 * 		Si code finis ou \0 :
-	 * 			copie de la difference pointeur fin - pointeur debut
-	 *			Stockage de l'argument et passage a l'etape suivante
-	 *	2eme etape / Si il reste des caractere dans la chaine :
-	 *		Recursivite
-	 *	3eme etape/ Si plus de caractere
-	 *		return
-	 */
 
 int			ft_vasprintf(char **ret, const char *s, va_list ap)
 {
@@ -47,13 +24,12 @@ int			ft_vasprintf(char **ret, const char *s, va_list ap)
 	t_format	*t;
 	int			tmp_size;
 
-	t = init_struct();
 	if (((size_end = search_next_format(s))) == 0)
 	{
-		ft_memdel((void**)&t);
 		*ret = ft_strdup("");
 		return (0);
 	}
+	t = init_struct();
 	*ret = ft_strsub(s, 0, size_end);
 	va_copy(t->arg, ap);
 	if (!(ft_strrchr(*ret, '%') == (*ret + ft_strlen(*ret) - 1)))

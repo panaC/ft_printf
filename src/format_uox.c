@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 09:09:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/03/12 14:11:09 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/03/12 15:15:52 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,33 +96,6 @@ char					*param_attribut_uox(t_format *t, char *s)
 		s = fill_length_param(tmp, ((t->attr_0) ? '0' : ' '),
 					t->attr_moins, t->length_field);
 	return (s);
-
-	/*
-	 * ****************************************
-	 */
-	/*
-	if (t->flag_pc)
-		t->flag_pc = FALSE;
-	if (t->attr_dieze && (t->op == 'x' || t->op == 'X'))
-	{
-		if (t->attr_0)
-			tmp = fill_length_param(s, '0', t->attr_moins, t->length_field - 2);
-		s = ft_strjoin(((t->op == 'x') ? "0x" : "0X"), tmp);
-		//ft_memdel((void**)&tmp);
-	}
-	else if (t->attr_dieze && (t->op == 'o' || t->op == 'O'))
-	{
-		if (t->attr_0)
-			tmp = fill_length_param(s, '0', t->attr_moins, ((s[0] == '0') ?
-						t->length_field : t->length_field - 1));
-		s = ft_strjoin(((s[0] == '0') ? "" : "0"), tmp);
-		//ft_memdel((void**)&tmp);
-	}
-	else
-		s = fill_length_param(tmp, ((t->attr_0) ? '0' : ' '),
-					t->attr_moins, t->length_field);
-	return (s);
-	*/
 }
 
 char					*conv_format_uox(t_format *t)
