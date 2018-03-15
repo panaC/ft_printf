@@ -6,7 +6,7 @@
 #    By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/02 12:44:40 by pleroux           #+#    #+#              #
-#    Updated: 2018/02/02 13:31:16 by pleroux          ###   ########.fr        #
+#    Updated: 2018/03/15 14:40:46 by pleroux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC_FILE = format_c.c \
 		   format_s.c\
 		   format_tools.c \
 		   format_uox.c \
+		   format_uox_attr.c \
 		   ft_printf.c \
 		   ft_vasprintf.c \
 		   mae_parse.c \
