@@ -9,3 +9,7 @@ test/test
 *.bak
 *.gch
 *.a
+curqui_test/**/*
+curqui_test
+leaks-printf
+*.dSYM/**/*
