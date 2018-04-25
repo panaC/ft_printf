@@ -13,3 +13,5 @@ curqui_test/**/*
 curqui_test
 leaks-printf
 *.dSYM/**/*
+*/.*~
+*/.*
