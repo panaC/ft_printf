@@ -6,11 +6,18 @@
 #    By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/02 12:44:40 by pleroux           #+#    #+#              #
-#    Updated: 2018/05/04 20:51:53 by pleroux          ###   ########.fr        #
+#    Updated: 2018/05/04 21:07:43 by pleroux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+LIB_PATH= libft/
+LIB= $(LIB_PATH)/libft.a
+LIB_HEAD= $(LIB_PATH)/includes
+LIB_PRINTF= libftprintf-tmp.a
+NAME= libftprintf.a
+
 CFLAGS = -Wall -Wextra -Werror
+LDFLAGS = -I $(LIB_HEAD)
 CC = gcc
 INC_DIR =./inc
 
@@ -32,11 +39,6 @@ SRC_FILE = format_c.c \
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILE))
 OBJ = $(SRC:.c=.o)
 
-LIB= libft/libft.a
-LIB_PATH= libft/
-LIB_PRINTF= libftprintf-tmp.a
-NAME= libftprintf.a
-
 all : $(NAME)
 
 $(NAME) : $(LIB) $(OBJ)
@@ -49,7 +51,7 @@ $(LIB)	:
 
 clean	:
 	rm -f $(OBJ)
-	make -C libft/ clean
+	make -C $(LIB_PATH) clean
 
 fclean	: clean
 	rm -f $(NAME)
