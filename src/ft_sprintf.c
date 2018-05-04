@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 19:38:39 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 21:01:37 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 21:45:23 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 #include <libft.h>
 #include "../inc/ft_printf.h"
 
-int				ft_sprintf(char *str, const char *s, ...)
+int				ft_sprintf(char **str, const char *s, ...)
 {
 	va_list		ap;
 	int			sl;
 
 	va_start(ap, s);
-	sl = ft_vasprintf(&str, s, ap);
+	sl = ft_vasprintf(str, s, ap);
 	va_end(ap);
 	return (sl);
 }
