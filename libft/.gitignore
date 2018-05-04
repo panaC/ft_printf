@@ -1,9 +1,0 @@
-*~*
-*.swp
-*.test*
-*.a
-*.o
-*.bak
-.DS_Store
-.idea/*
-test/*
