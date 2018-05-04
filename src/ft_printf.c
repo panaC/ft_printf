@@ -6,14 +6,14 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 13:37:01 by pierre            #+#    #+#             */
-/*   Updated: 2018/02/06 13:28:26 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 21:01:09 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "../libft/includes/libft.h"
+#include <libft.h>
 #include "../inc/ft_printf.h"
 
 int				ft_printf(const char *s, ...)

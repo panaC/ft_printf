@@ -6,14 +6,14 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 19:38:39 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 19:42:30 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 21:01:37 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "../libft/includes/libft.h"
+#include <libft.h>
 #include "../inc/ft_printf.h"
 
 int				ft_sprintf(char *str, const char *s, ...)

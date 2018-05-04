@@ -6,7 +6,7 @@
 #    By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/02 12:44:40 by pleroux           #+#    #+#              #
-#    Updated: 2018/05/04 21:07:43 by pleroux          ###   ########.fr        #
+#    Updated: 2018/05/04 21:16:16 by pleroux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ LIB_HEAD= $(LIB_PATH)/includes
 LIB_PRINTF= libftprintf-tmp.a
 NAME= libftprintf.a
 
-CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -I $(LIB_HEAD)
+CFLAGS = -Wall -Wextra -Werror -I $(LIB_HEAD)
 CC = gcc
 INC_DIR =./inc
 
@@ -55,7 +54,7 @@ clean	:
 
 fclean	: clean
 	rm -f $(NAME)
-	make -C libft/ fclean
+	make -C $(LIB_PATH) fclean
 
 re		: clean all
 

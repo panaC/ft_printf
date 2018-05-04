@@ -6,11 +6,11 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:20:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/03/12 15:10:50 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 20:58:08 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/includes/libft.h"
+#include <libft.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <wchar.h>

@@ -6,11 +6,11 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 14:31:31 by pleroux           #+#    #+#             */
-/*   Updated: 2018/03/15 14:40:15 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 20:59:19 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/includes/libft.h"
+#include <libft.h>
 #include "format_uox.h"
 #include "format_tools.h"
 #include <stdio.h>

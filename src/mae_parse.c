@@ -6,11 +6,11 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/28 17:02:51 by pierre            #+#    #+#             */
-/*   Updated: 2018/02/02 14:17:22 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 21:02:25 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/includes/libft.h"
+#include <libft.h>
 #include <stdio.h>
 #include "../inc/ft_printf.h"
 

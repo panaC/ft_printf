@@ -6,13 +6,13 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:19:26 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 20:51:16 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 20:57:12 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# include "../libft/includes/libft.h"
+# include <libft.h>
 # include <stdarg.h>
 
 # define STR_FORMAT_CHAR "sSpdDioOuUxXcC%"

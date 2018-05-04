@@ -6,12 +6,12 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:45:23 by pleroux           #+#    #+#             */
-/*   Updated: 2018/03/12 14:30:02 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 20:57:50 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "../libft/includes/libft.h"
+#include <libft.h>
 #include <stdint.h>
 #include <stdio.h>
 #include "format_d.h"
