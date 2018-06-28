@@ -15,3 +15,4 @@ leaks-printf
 *.dSYM/**/*
 */.*~
 */.*
+libft/

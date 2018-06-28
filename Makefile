@@ -6,7 +6,7 @@
 #    By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/02 12:44:40 by pleroux           #+#    #+#              #
-#    Updated: 2018/05/04 21:16:16 by pleroux          ###   ########.fr        #
+#    Updated: 2018/06/28 10:25:52 by pierre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,11 @@ all : $(NAME)
 
 $(NAME) : $(LIB) $(OBJ)
 	ar rcs $(LIB_PRINTF) $(OBJ)
-	libtool -static -o $(NAME) $(LIB_PRINTF) $(LIB)
+	#libtool -static -o $(NAME) $(LIB_PRINTF) $(LIB)
+	ar -x $(LIB)
+	ar -x $(LIB_PRINTF)
+	ar -qc $(NAME)  *.o
+	rm -f *.o
 	rm -f $(LIB_PRINTF)
 
 $(LIB)	:
