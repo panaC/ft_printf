@@ -27,3 +27,12 @@ My time flow :
 - 2 weeks for the tests fct and test checkers
 
 An another challenge for me is the discovery of [va_list](http://www.cplusplus.com/reference/cstdarg/va_list/) and the parameter call for each recursion for the future cast in fonction of '%' sign
+
+# utilisation
+
+- add libftprintf.a in gcc makefile
+- add "ft_printf.h" in header files
+
+```
+  #include "ft_printf.h"
+  ```
