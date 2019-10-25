@@ -6,7 +6,7 @@
 #    By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/02 12:44:40 by pleroux           #+#    #+#              #
-#    Updated: 2018/06/28 10:25:52 by pierre           ###   ########.fr        #
+#    Updated: 2019/10/25 19:24:29 by pleroux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,6 @@ fclean	: clean
 	rm -f $(NAME)
 	make -C $(LIB_PATH) fclean
 
-re		: clean all
+re		: fclean all
 
 .PHONY : all clean re fclean compile $(LIB)
