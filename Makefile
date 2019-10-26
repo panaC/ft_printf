@@ -62,4 +62,4 @@ fclean	: clean
 
 re		: fclean all
 
-.PHONY : all clean re fclean compile $(LIB)
+.PHONY : all clean re fclean compile
